@@ -3,17 +3,17 @@
 require_once "../core/config.php";
 if(isset($_REQUEST['name']))
 {	 
-	 $name = $_POST['name'];
-	 $address = $_POST['address'];
+   $name = $_POST['name'];
+   $address = $_POST['address'];
    $city = $_POST['city'];
-	 $age = $_POST['age'];
+   $age = $_POST['age'];
    $country = $_POST['country'];
    $state = $_POST['state'];
   
-	 $sql = "INSERT INTO address (name,address,city,age,country_id,state_id)
-	 VALUES ('$name','$address','$city','$age','$country','$state')";
+	 $sql = "Update address SET name='$name',address='$address',city='$city',age='$age',country_id='$country',state_id='$state'";
+
 	 if (mysqli_query($con, $sql)) {
-		//echo "New record created successfully !";
+		echo "updated successfully !";
     header("Location:addresslist.php");
 	 } else {
 		echo "Error: " . $sql . "
@@ -24,20 +24,19 @@ if(isset($_REQUEST['name']))
 
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>addressadd</title>
+    <title>addressupdate</title>
 </head>
 <body>
     <!-- header -->
     <form id="add" method="POST" action="">
        <div class="title">
-         <h2>Details</h2>
+         <h2>Edit</h2>
        </div>
 
         <!-- name-->
@@ -98,7 +97,7 @@ if(isset($_REQUEST['name']))
         <br>
         
        <br>
-      <button type="submit" name="button" class="btn" onclick=" ">Add</button>
+      <button type="submit" name="button" class="btn" onclick="">Update</button>
       <button type="submit" name="button" class="btn" onclick="">cancel</button>
     </p>
     

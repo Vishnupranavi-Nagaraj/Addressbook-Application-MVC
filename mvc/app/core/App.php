@@ -10,7 +10,7 @@ Class App
 	{
 
 		$url = $this->splitURL();
-
+		var_dump($url);
  		if(file_exists("../app/controllers/". strtolower($url[0]) .".php"))
  		{
  			$this->controller = strtolower($url[0]);
@@ -37,6 +37,7 @@ Class App
 	private function splitURL()
 	{
 		$url = isset($_GET['url']) ? $_GET['url'] : "home";
+		var_dump($_SERVER['REQUEST_URI']);
 		return explode("/", filter_var(trim($url,"/"),FILTER_SANITIZE_URL));
 	}
 }

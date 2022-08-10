@@ -68,7 +68,7 @@ if(isset($_REQUEST['email'])){
     </form>
     <?php   if ($result){
     //echo "<script >alert('Registeration success Please Login')</script>";
-    header("Location:login.php");
+    ("Location:login.phpheader");
 
   } 
   

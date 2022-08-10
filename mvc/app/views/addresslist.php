@@ -13,9 +13,13 @@
     <div class="head">
     <title>Addresslist</title>
     </div>
-    <!-- content -->
+    <!-- add -->
     <form action="addressadd.php">
     <input type="submit" value="add">
+</form>
+<br>
+<form action="updatelist.php">
+    <input type="submit" value="update">
 </form>
 
 </form>
