@@ -1,3 +1,35 @@
+<?php
+    require_once "../core/config.php";
+    //session_start();
+    // When form submitted, check and create user session.
+    if (isset($_POST['email'])) {
+        $email = stripslashes($_REQUEST['email']);    // removes backslashes
+        $email = mysqli_real_escape_string($con, $email);
+        $password = stripslashes($_REQUEST['password']);
+        $password = mysqli_real_escape_string($con, $password);
+        // Check user is exist in the database
+        $query    = "SELECT * FROM `user` WHERE email='$email'
+                     AND password='$password'";
+        $result = mysqli_query($con, $query);
+        $rows = mysqli_num_rows($result);
+        if ($rows == 1) {
+          //echo "<script>alert('Login success')</script>";
+          header("Location:addresslist.php");
+
+      } else {
+        //echo $query;
+          echo '<script>alert("invalid Username or password")</script>';
+                
+      }
+  
+    } else{
+      echo "Not valid";
+    }
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +40,7 @@
     </head>
   <body>
     <!-- header -->
-    <form id="create-account-form" method="POST" action="../app/controllers/home.php">
+    <form id="create-account-form" method="POST" action="">
        <div class="title">
          <h2>Signin</h2>
        </div>
@@ -39,14 +71,12 @@
       </div>
       
     </form>
+     
 
     <script type="text/javascript" src="http://localhost/mvc/public/assets/login.js">
 
     </script>
-    <?php
-        $register=new loginmodel();
-        $register->login($email,$password);
-   ?>
+    
   </body>
 </html>
 

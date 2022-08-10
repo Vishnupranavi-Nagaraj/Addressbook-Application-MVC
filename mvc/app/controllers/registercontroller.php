@@ -1,10 +1,13 @@
 <?php
 // require_once 'core/config.php';
-class Registercontroller extends controller
+require_once '../core/Controller.php';
+class Registercontroller extends Controller
 {
-    public function index(){
-        $this->model("registermodel");
-        $this->view("register");
+    public function index()
+    {
+        echo  "hai";
+       $this->loadmodel("registermodel");
+       $this->view("register");
     }
 }
 

@@ -9,11 +9,15 @@
 
 <body>
     <!-- header -->
+    <form="new" method="post" action="">
     <div class="head">
     <title>Addresslist</title>
     </div>
     <!-- content -->
-    <button type="button">Addnew</button>
+    <form action="addressadd.php">
+    <input type="submit" value="add">
+</form>
 
+</form>
 </body>
 </html>

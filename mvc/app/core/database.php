@@ -2,10 +2,10 @@
 
 class Database
 {
-    private $host = "localhost";
-    private $username = "root";
-    private $password = "Weakpass$12";
-    private $database = "addressbook";
+    public $host = "localhost";
+    public $username = "root";
+    public $password = "Weakpass$12";
+    public $database = "addressbook";
     public $conn;
 
     public function __construct()

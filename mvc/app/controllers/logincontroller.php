@@ -1,11 +1,9 @@
 <?php
-require_once 'core/config.php';
-class logincontroller extends controller{
-    public function index(){
-        $this->model("loginmodel");
-        $this->view("login");
-    }
+require_once "../core/Controller.php";
+class logincontroller extends Controller{
+   public function index(){
+      $this->loadmodel("loginmodel");
+       $this->view("login");
+   }
 }
 
-
-?>

@@ -1,8 +1,9 @@
 <?php
-class loginmodel extends controller{
+require_once "../core/database.php";
+class loginmodel extends Database{
     public function login(){
 
-   if(isset($_POST['but_submit'])){
+   if(isset($_POST['button'])){
 
     $email = mysqli_real_escape_string($this->conn,$_POST['email']);
     $password = mysqli_real_escape_string($this->conn,$_POST['password']);

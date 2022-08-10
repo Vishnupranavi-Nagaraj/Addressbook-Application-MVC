@@ -67,13 +67,16 @@
         <option value="USA">USA</option>
         </select>
        <br>
-      <button type="submit" name="button" class="btn" onclick="validateForm()">Add</button>
+      <button type="submit" name="button" class="btn" onclick=" ">Add</button>
     </p>
     
       </div>
       
     </form>
-    
+    <?php
+        $add=new addmodel();
+        $register->insert($name,$address,$age,$city,$country,$state);
+        ?>
     
 </body>
 </html>

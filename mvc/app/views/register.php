@@ -1,3 +1,19 @@
+<?php
+// Include config file
+require_once "../core/config.php";
+// Processing form data when form is submitted
+if(isset($_REQUEST['email'])){
+  //escapes special characters in a string
+  $email    = $_REQUEST['email'];
+  $email    = mysqli_real_escape_string($con, $email);
+  $password = $_REQUEST['password'];
+  $password = mysqli_real_escape_string($con, $password);
+  $query    = "INSERT into `user` (email, password)
+               VALUES ('$email', '$password')";         
+  $result   = mysqli_query($con, $query);
+ } else {
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +25,7 @@
   <body>
   
     <!-- header -->
-    <form id="create-account-form" method="POST" action="../app/controllers/home.php">
+    <form id="create-account-form" method='POST' action="">
        <div class="title">
          <h2>Signup</h2>
        </div>
@@ -40,18 +56,28 @@
            <p>Error Message</p>
         </div>
        
-      <button type="submit" name="button" class="btn" onclick="validateForm()">Register</button>
+      <button type="submit" name="button" class="btn" onclick="validateform()">Register</button>
+      
       </div>
-      <p><a href="login.php">Already an user?</a></p>
+      <p><a href="login.php" >Already an user?</a></p>
+     
+
+  
+   
       
     </form>
+    <?php   if ($result){
+    //echo "<script >alert('Registeration success Please Login')</script>";
+    header("Location:login.php");
 
+  } 
+  
+?>
     <script type="text/javascript" src="http://localhost/mvc/public/assets/view.js">
    
     </script>
-       <?php
-        $register=new registermodel();
-        $register->register($email,$password);
-   ?>
+        
+       
+   
   </body>
 </html>
