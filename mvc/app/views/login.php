@@ -1,35 +1,7 @@
 <?php
-    require_once "../core/config.php";
-    //session_start();
-    // When form submitted, check and create user session.
-    if (isset($_POST['email'])) {
-        $email = stripslashes($_REQUEST['email']);    // removes backslashes
-        $email = mysqli_real_escape_string($con, $email);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($con, $password);
-        // Check user is exist in the database
-        $query    = "SELECT * FROM `user` WHERE email='$email'
-                     AND password='$password'";
-        $result = mysqli_query($con, $query);
-        $rows = mysqli_num_rows($result);
-        if ($rows == 1) {
-          //echo "<script>alert('Login success')</script>";
-          header("Location:addresslist.php");
-
-      } else {
-        //echo $query;
-          echo '<script>alert("invalid Username or password")</script>';
-                
-      }
-  
-    } else{
-      echo "Not valid";
-    }
+$login = new Loginmodel();
+$login->log();
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,7 +35,7 @@
            <p>Error Message</p>
         </div>
        
-      <button type="submit" name="button" class="btn" onclick="validateForm()">Login</button>
+      <button type="submit" name="loginbutton" class="btn" onclick="validateForm()">Login</button>
       <p style="text-align: centre;">
         <a href="addresslist.php">New user?</a>
     </p>

@@ -1,7 +1,5 @@
 <?php
-function show($stuff){
-    echo "<pre>";
-    print_r($stuff);
-    echo "</pre>";
+function add($a){
+    $c=$a[0]+$a[1];
+    return $c;
 }
-?>

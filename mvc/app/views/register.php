@@ -1,25 +1,13 @@
 <?php
-// Include config file
-require_once "../core/config.php";
-// Processing form data when form is submitted
-if(isset($_REQUEST['email'])){
-  //escapes special characters in a string
-  $email    = $_REQUEST['email'];
-  $email    = mysqli_real_escape_string($con, $email);
-  $password = $_REQUEST['password'];
-  $password = mysqli_real_escape_string($con, $password);
-  $query    = "INSERT into `user` (email, password)
-               VALUES ('$email', '$password')";         
-  $result   = mysqli_query($con, $query);
- } else {
-}
+$loginAdmin = new Registermodel();
+$loginAdmin->reg();
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Signup page</title>
-    <link rel="stylesheet" href="http://localhost/mvc/public/assets/view.css">
+    <link rel="stylesheet" href="http://localhost/mvc/public/assets/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
   <body>
@@ -56,24 +44,18 @@ if(isset($_REQUEST['email'])){
            <p>Error Message</p>
         </div>
        
-      <button type="submit" name="button" class="btn" onclick="validateform()">Register</button>
+      <button type="submit" name="registerbutton" class="btn" onclick="validateform()">Register</button>
       
       </div>
-      <p><a href="login.php" >Already an user?</a></p>
+      <p><a href="login" >Already an user?</a></p>
      
 
   
    
       
     </form>
-    <?php   if ($result){
-    //echo "<script >alert('Registeration success Please Login')</script>";
-    header("Location:login.php");
-
-  } 
-  
-?>
-    <script type="text/javascript" src="http://localhost/mvc/public/assets/view.js">
+    
+    <script type="text/javascript" src="http://localhost/mvc/public/assets/register.js">
    
     </script>
         

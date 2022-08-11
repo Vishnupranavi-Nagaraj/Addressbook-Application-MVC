@@ -1,19 +1,29 @@
 <?php
 // Include config file
 require_once "connect.php";
-if(isset($_REQUEST['submit']))
+$id=$_GET['id'];
+$sql="Select *from address where id=$id";
+$result($conn,$sql);
+$row=mysqli_fetch_assoc($result);
+$name = $row['name'];
+$address = $row['address'];
+$city = $row['city'];
+$age = $row['age'];
+$country = $row['country'];
+$state = $row['state'];
+
+if(isset($_REQUEST['updateid']))
 {	 
 	 $name = $_POST['name'];
 	 $address = $_POST['address'];
-   $city = $_POST['city'];
+     $city = $_POST['city'];
 	 $age = $_POST['age'];
-   $country = $_POST['country'];
-   $state = $_POST['state'];
+     $country = $_POST['country'];
+     $state = $_POST['state'];
   
-	 $sql = "INSERT INTO address (name,address,city,age,country_id,state_id)
-	 VALUES ('$name','$address','$city','$age','$country','$state')";
+	 $sql = "Update address set id=$id,name='$name',address='$address',city='$city',age='$age',country='$country',state='$state' where id=$id";
 	 if (mysqli_query($con, $sql)) {
-	echo "New record created successfully !";
+	//echo "Updated successfully !";
     header("Location:addresslist.php");
 	 } else {
 		echo "Error: " . $sql . "
@@ -44,27 +54,27 @@ if(isset($_REQUEST['submit']))
         <form action="POST">
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" placeholder="Enter name" name="name">
+                <input type="text" class="form-control" placeholder="Enter name" name="name" value=<?php echo $name;?>>
 
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="textarea" class="form-control" placeholder="Enter address" name="address">
+                <input type="textarea" class="form-control" placeholder="Enter address" name="address" value=<?php echo $address;?>>
 
             </div>
             <div class="form-group">
                 <label>Age</label>
-                <input type="text" class="form-control" placeholder="Enter age" name="age">
+                <input type="text" class="form-control" placeholder="Enter age" name="age" value=<?php echo $age;?>>
 
             </div>
             <div class="form-group">
                 <label>City</label>
-                <input type="text" class="form-control" placeholder="Enter city" name="city">
+                <input type="text" class="form-control" placeholder="Enter city" name="city" value=<?php echo $city;?>>
 
             </div>
             <div class="form-group">
                 <label for="country">Country</label>
-                <select class="form-control" id="country"  name="country">
+                <select class="form-control" id="country"  name="country" value=<?php echo $country;?>>
                     <option value=1>Select</option>
                     <option value=2>India</option>
                     <option value=3>China</option>
@@ -74,7 +84,7 @@ if(isset($_REQUEST['submit']))
             </div>
             <div class="form-group">
                 <label for="state" >State</label>
-                <select class="form-control" id="state"name="state">
+                <select class="form-control" id="state"name="state" value=<?php echo $state;?>>
                     <option value=1>Select</option>
                     <option value=2>Tamilnadu</option>
                     <option value=3>Kerala</option>
@@ -85,7 +95,7 @@ if(isset($_REQUEST['submit']))
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit">Update</button>
         </form>
 
 

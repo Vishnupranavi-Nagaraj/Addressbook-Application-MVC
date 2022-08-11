@@ -1,25 +1,24 @@
 <?php
-require_once "../core/database.php";
-class registermodel extends Database
+
+Class Registermodel extends Database
 {
-    
-     public function register($email,$password){
-          
-          if (isset($_POST['button'])) {
-               echo "hai";
-               $email = $_POST['email'];
-               $password = $_POST['password'];
-               $sql = "INSERT INTO user ('email', 'password') VALUES ('$email','$password')";
-               $result = $this->conn->query($sql);
-               if ($result == TRUE) {
-                 echo "New record created successfully.";
-               }else{
-                 echo "Error";
-               } 
-             }
-     }
+    public function reg()
+    {
+    if(isset($_POST['registerbutton'])){
+     $email    = $_POST['email'];
+    $email    = mysqli_real_escape_string($this->conn, $email);
+    $password = $_POST['password'];
+    $password = mysqli_real_escape_string($this->conn, $password);
+    $query    = "INSERT into `user` (email, password)
+               VALUES ('$email', MD5('$password'))";         
+    $result   = mysqli_query($this->conn, $query);
+    if ($result){
+     header("Location:login");
+    }
+    else{
+        echo "fail";
+    }
+    } 
 }
-
-
-
+}
 ?>

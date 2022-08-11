@@ -1,21 +1,22 @@
+<?php 
 
-<!-- // //define("hai","welcome");
-#define('server','mysql');
-#define('host','localhost');
-#define('username','root');
-#define('password','Weakpass$12');
-#define('database','addressbook');
-#$link = mysqli_connect(server,host,username,password,database); -->
+/*set your website title*/
 
-// 
+define('WEBSITE_TITLE', "My Website");
 
-<?php
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'Weakpass$12');
-define('DB_NAME', 'addressbook');
- 
-/* Attempt to connect to MySQL database */
-$con = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+/*set database variables*/
+
+define('DB_TYPE','mysql');
+define('DB_NAME','addressbook');
+define('DB_USER','root');
+define('DB_PASS','Weakpass$12');
+define('DB_HOST','localhost');
+
+define('DEBUG',true);
+
+if(DEBUG)
+{
+	ini_set("display_errors",1);
+}else{
+	ini_set("display_errors",0);
+}

@@ -1,7 +1,5 @@
 <?php
 session_start();
+require "../app/init.php";
 
-require '../app/init.php';
-$app = new App();
-
-?>
+$a=new App();

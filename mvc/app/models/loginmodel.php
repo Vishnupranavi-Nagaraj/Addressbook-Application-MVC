@@ -1,31 +1,27 @@
 <?php
-require_once "../core/database.php";
-class loginmodel extends Database{
-    public function login(){
-
-   if(isset($_POST['button'])){
-
-    $email = mysqli_real_escape_string($this->conn,$_POST['email']);
-    $password = mysqli_real_escape_string($this->conn,$_POST['password']);
-
-    if ($email != "" && $password != ""){
-
-        $sql_query = "select*from user where email='".$email."' and password='".$password."'";
-        $result = mysqli_query($this->con,$sql_query);
-        $row = mysqli_fetch_array($result);
-
-        $count = $row['cntUser'];
-
-        if($count > 0){
-            $_SESSION['email'] = $email;
-            header('addresslist.php');
-        }else{
-            echo "Invalid username and password";
-        }
-
-    }
-
+Class Loginmodel extends Database{
+    public function log(){
+    if (isset($_POST['loginbutton'])) {
+        $email = stripslashes($_POST['email']);   
+        $email = mysqli_real_escape_string($this->conn, $email);
+        $password = stripslashes($_POST['password']);
+        $password = mysqli_real_escape_string($this->conn, $password);
+        $query    = "SELECT * FROM `user` WHERE email='$email'
+                     AND password=MD5('$password')";
+        $result = mysqli_query($this->conn, $query);
+        $rows = mysqli_num_rows($result);
+        if ($rows == 1)
+         {
+          echo '<script>alert("welcome")</script>';
+          header("Location:addresslist.php");
+         } else
+          {
+          echo '<script>alert("invalid Username or password")</script>';
+         }
+        } else{
+        echo "Not valid";
+       }
 }
-    }
 }
 ?>
+
