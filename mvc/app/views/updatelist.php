@@ -1,7 +1,6 @@
-
 <?php
-$update=new Updatemodel();
-$update=$this->update();
+
+
 ?>
 <!Doctype html>
 <html lang="en">
@@ -18,80 +17,64 @@ $update=$this->update();
 </head>
 
 <body>
-    <div class="container my-5" >
+    <div class="container my-5">
         <form method="POST">
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" placeholder="Enter name" name="name" value=<?php echo $name;?>>
+                <input type="text" class="form-control" placeholder="Enter name" name="name">
 
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="textarea" class="form-control" placeholder="Enter address" name="address" value=<?php echo $address;?>>
+                <input type="textarea" class="form-control" placeholder="Enter address" name="address">
 
             </div>
             <div class="form-group">
                 <label>Age</label>
-                <input type="text" class="form-control" placeholder="Enter age" name="age" value=<?php echo $age;?>>
+                <input type="text" class="form-control" placeholder="Enter age" name="age">
 
             </div>
             <div class="form-group">
                 <label>City</label>
-                <input type="text" class="form-control" placeholder="Enter city" name="city" value=<?php echo $city;?>>
+                <input type="text" class="form-control" placeholder="Enter city" name="city">
 
             </div>
-            <div class="form-group">
-                <label for="country">Country</label>
-                <select class="form-control" id="country"  name="country">
-                <?php
-                 $counrseult=$update->updatecountry($country);
-                  $convar=mysqli_fetch_assoc($counrseult);
-                echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
-                   
-                  
-                  ?>
-                   <?php
-                 $counrseult=$update->updatecountry($country);
-                  if($counrseult){
-                    while($convar=mysqli_fetch_assoc($counrseult)){
-                        echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
-                    }
-                  }
-                    ?>
-                    
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="state" >State</label>
-                <select class="form-control" id="state"name="state" ?>
-                <?php
-                  $coun="select*from state where id = $state ";
-                  $counrseult=mysqli_query ($this->conn,$coun);
-                  $convar=mysqli_fetch_assoc($counrseult);
-                  echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
-                 ?>
-    
-                <?php
-                  $coun="select*from state where id != $state";
-                  $counrseult=mysqli_query ($this->conn,$coun);
-                  if($counrseult){
-                    while($convar=mysqli_fetch_assoc($counrseult)){
-                        echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
-                    }
-                  }
-                    ?>
-                   
-                </select>
-            </div>
+            
+            
+                         
+                
+         
 
-            <button type="submit" class="btn btn-primary" name="updatebutton">Update</button>
+            <button type="submit" class="btn btn-primary" name="update" id="buttonid">Update</button>
         </form>
 
 
     </div>
-<div>
-   
-</div>
+    <?php
+    
+    $update = new Updatemodel();
+    //$update->update($name,$address,$age,$city,$id);
+    //$update->displaycountry();
+    //$update->displaystate();
+    
+    $id  = $_GET['idbutton'];
+    echo $id;
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $age = $_POST['age'];
+    $city = $_POST['city'];
+    //$country=$_POST['country_id'];
+    //$state=$_POST['state_id'];
+echo "hai";
+    $sql = $update->update($name,$address,$age,$city,$id);
+
+    if($sql)
+    {
+        echo "Updated";
+    }
+    echo "Not";
+?>    
+
 </body>
 
 </html>

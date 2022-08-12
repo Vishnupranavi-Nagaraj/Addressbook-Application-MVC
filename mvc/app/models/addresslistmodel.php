@@ -24,10 +24,11 @@ if(isset($_POST['stud_delete_multiple_btn']))
 }
 }
 public function display(){
-  $sql="select*from `address`";
+  $sql="select*from `address`";//should be in common //require all fileds 
   $result=mysqli_query($this->conn,$sql);
   return $result;
 
 }
 }
 ?>
+//

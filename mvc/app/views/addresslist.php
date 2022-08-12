@@ -52,8 +52,8 @@ $delete->delete();
           <th scope="row">'.$id.'</th>
           <td>'.$name.'</td>
           <td>'.$address.'</td>
-          <td>
-          <button type="submit" name = "selectupdate" class="btn btn-primary" value ='.$id.'> <a href="update.php?buttonid='.$id.'" class="text-light" >Update</a></button>
+          <td>;
+          <button class="btn btn-warning"><a href="UpdateFormAdmin?id=<?php echo $row['id'];?>" class="text-light">UPDATE</a></button>
           <button class="btn btn-danger"><input type="checkbox" name="stud_delete_id[]" value='.$id.'></button>
           </td>
           </tr>';
