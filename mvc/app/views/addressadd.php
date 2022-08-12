@@ -1,30 +1,8 @@
 <?php
-// Include config file
-require_once "connect.php";
-if(isset($_REQUEST['submit']))
-{	 
-	 $name = $_POST['name'];
-	 $address = $_POST['address'];
-   $city = $_POST['city'];
-	 $age = $_POST['age'];
-   $country = $_POST['country'];
-   $state = $_POST['state'];
-  
-	 $sql = "INSERT INTO address (name,address,city,age,country_id,state_id)
-	 VALUES ('$name','$address','$city','$age','$country','$state')";
-	 if (mysqli_query($con, $sql)) {
-	echo "New record created successfully !";
-    header("Location:addresslist.php");
-	 } else {
-		echo "Error: " . $sql . "
-" . mysqli_error($con);
-	 }
-	 mysqli_close($con);
-}else{
+$val=new Addressaddmodel();
+$val->add();
 
-}
 ?>
-
 <!Doctype html>
 <html lang="en">
 
@@ -40,8 +18,8 @@ if(isset($_REQUEST['submit']))
 </head>
 
 <body>
-    <div class="container my-5" >
-        <form action="POST">
+    <div class="container my-5">
+        <form method="POST">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name">
@@ -62,34 +40,54 @@ if(isset($_REQUEST['submit']))
                 <input type="text" class="form-control" placeholder="Enter city" name="city">
 
             </div>
+            
             <div class="form-group">
                 <label for="country">Country</label>
-                <select class="form-control" id="country"  name="country">
-                    <option value=1>Select</option>
-                    <option value=2>India</option>
-                    <option value=3>China</option>
-                    <option value=4>USA</option>
-                   
+                <select class="form-control" id="country" name="country">
+                    <option> Select country</option>
+                  <?php
+                  $counrseult=$val->displaycountry();
+                  if($counrseult){
+                    while($convar=mysqli_fetch_assoc($counrseult)){
+                    
+                        echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
+                    }
+                  }
+                    ?>
                 </select>
             </div>
             <div class="form-group">
-                <label for="state" >State</label>
-                <select class="form-control" id="state"name="state">
-                    <option value=1>Select</option>
-                    <option value=2>Tamilnadu</option>
-                    <option value=3>Kerala</option>
-                    <option value=4>Gansu</option>
-                    <option value=5>Hongkong</option>
-                    <option value=6>Newyork</option>
-                   
-                </select>
-            </div>
+                <label for="state">State</label>
+                <select class="form-control" id="state" name="state">
+                    <option> Select State</option>
+                    <?php
+                    $filter_result=$val->displaystate();
+                     
+                    if ($filter_result) {
+                        while ($row = mysqli_fetch_assoc($filter_result)) {
+                            $statevar = $row['name'];
+                            echo '<option value = '.$row['id'].'> '.$statevar .'</option>';
+                        }
+                    }
+                    else{
+                        echo '<option>Select State</option>';
+                    }
 
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                    ?>
+
+                </select>
+
+            </div>
+            
+                
+         
+
+            <button type="submit" class="btn btn-primary" name="savebutton">Submit</button>
         </form>
 
 
     </div>
+    
 
 </body>
 

@@ -1,3 +1,9 @@
+
+<?php
+
+$delete=new Addresslistmodel();
+$delete->delete();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +15,11 @@
 </head>
 <body>
     <div class="container">
+    <form method="POST">
         <button class="btn btn-primary my-5">
-            <a href="user.php" class="text-light"> Add</a>
+            <a href="addressadd" class="text-light"> Add</a>
             </button>
+
         <table class="table">
   <thead>
   
@@ -19,13 +27,15 @@
       <th scope="col">S.no</th>
       <th scope="col">Name</th>
       <th scope="col">Address</th>
-      <th scope="col">Handle</th>
+      <button type="submit" name="stud_delete_multiple_btn" class="btn btn-danger">Delete</button>
     </tr>
+    
   </thead>
   <tbody>
+  
   <?php
-    $sql="select*from `address`";
-    $result=mysqli_query($con,$sql);
+   $result= $delete->display();
+    
     if($result)
     {
         while($row=mysqli_fetch_assoc($result))
@@ -35,16 +45,16 @@
           $address=$row['address'];
           $age=$row['age'];
           $city=$row['city'];
-          $country=$row['country'];
-          $state=$row['state'];
+          $country=$row['country_id'];
+          $state=$row['state_id'];
           echo '
           <tr>
           <th scope="row">'.$id.'</th>
           <td>'.$name.'</td>
           <td>'.$address.'</td>
           <td>
-          <button class="btn btn-primary"><a href="update.php" class="text-light" updateid='.$id.'>Update</a>
-          <button class="btn btn-danger"><a href="delete.php" class="text-light">Delete</a>
+          <button type="submit" name = "selectupdate" class="btn btn-primary" value ='.$id.'> <a href="update.php?buttonid='.$id.'" class="text-light" >Update</a></button>
+          <button class="btn btn-danger"><input type="checkbox" name="stud_delete_id[]" value='.$id.'></button>
           </td>
           </tr>';
 
@@ -56,9 +66,9 @@
 
     
   </tbody>
-</table> -->
+</table>
 
-
+  </form>
     </div>
     
 </body>

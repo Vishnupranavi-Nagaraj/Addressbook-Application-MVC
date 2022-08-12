@@ -13,7 +13,7 @@ Class Loginmodel extends Database{
         if ($rows == 1)
          {
           echo '<script>alert("welcome")</script>';
-          header("Location:addresslist.php");
+          header("Location:addresslist");
          } else
           {
           echo '<script>alert("invalid Username or password")</script>';

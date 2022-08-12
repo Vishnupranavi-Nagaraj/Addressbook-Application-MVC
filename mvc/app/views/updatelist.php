@@ -1,40 +1,8 @@
+
 <?php
-// Include config file
-require_once "connect.php";
-$id=$_GET['id'];
-$sql="Select *from address where id=$id";
-$result($conn,$sql);
-$row=mysqli_fetch_assoc($result);
-$name = $row['name'];
-$address = $row['address'];
-$city = $row['city'];
-$age = $row['age'];
-$country = $row['country'];
-$state = $row['state'];
-
-if(isset($_REQUEST['updateid']))
-{	 
-	 $name = $_POST['name'];
-	 $address = $_POST['address'];
-     $city = $_POST['city'];
-	 $age = $_POST['age'];
-     $country = $_POST['country'];
-     $state = $_POST['state'];
-  
-	 $sql = "Update address set id=$id,name='$name',address='$address',city='$city',age='$age',country='$country',state='$state' where id=$id";
-	 if (mysqli_query($con, $sql)) {
-	//echo "Updated successfully !";
-    header("Location:addresslist.php");
-	 } else {
-		echo "Error: " . $sql . "
-" . mysqli_error($con);
-	 }
-	 mysqli_close($con);
-}else{
-
-}
+$update=new Updatemodel();
+$update=$this->update();
 ?>
-
 <!Doctype html>
 <html lang="en">
 
@@ -51,7 +19,7 @@ if(isset($_REQUEST['updateid']))
 
 <body>
     <div class="container my-5" >
-        <form action="POST">
+        <form method="POST">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" value=<?php echo $name;?>>
@@ -74,33 +42,56 @@ if(isset($_REQUEST['updateid']))
             </div>
             <div class="form-group">
                 <label for="country">Country</label>
-                <select class="form-control" id="country"  name="country" value=<?php echo $country;?>>
-                    <option value=1>Select</option>
-                    <option value=2>India</option>
-                    <option value=3>China</option>
-                    <option value=4>USA</option>
+                <select class="form-control" id="country"  name="country">
+                <?php
+                 $counrseult=$update->updatecountry($country);
+                  $convar=mysqli_fetch_assoc($counrseult);
+                echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
                    
+                  
+                  ?>
+                   <?php
+                 $counrseult=$update->updatecountry($country);
+                  if($counrseult){
+                    while($convar=mysqli_fetch_assoc($counrseult)){
+                        echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
+                    }
+                  }
+                    ?>
+                    
                 </select>
             </div>
             <div class="form-group">
                 <label for="state" >State</label>
-                <select class="form-control" id="state"name="state" value=<?php echo $state;?>>
-                    <option value=1>Select</option>
-                    <option value=2>Tamilnadu</option>
-                    <option value=3>Kerala</option>
-                    <option value=4>Gansu</option>
-                    <option value=5>Hongkong</option>
-                    <option value=6>Newyork</option>
+                <select class="form-control" id="state"name="state" ?>
+                <?php
+                  $coun="select*from state where id = $state ";
+                  $counrseult=mysqli_query ($this->conn,$coun);
+                  $convar=mysqli_fetch_assoc($counrseult);
+                  echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
+                 ?>
+    
+                <?php
+                  $coun="select*from state where id != $state";
+                  $counrseult=mysqli_query ($this->conn,$coun);
+                  if($counrseult){
+                    while($convar=mysqli_fetch_assoc($counrseult)){
+                        echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
+                    }
+                  }
+                    ?>
                    
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary" name="submit">Update</button>
+            <button type="submit" class="btn btn-primary" name="updatebutton">Update</button>
         </form>
 
 
     </div>
-
+<div>
+   
+</div>
 </body>
 
 </html>
