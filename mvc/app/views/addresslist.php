@@ -1,6 +1,5 @@
 
 <?php
-
 $delete=new Addresslistmodel();
 $delete->delete();
 ?>
@@ -52,18 +51,18 @@ $delete->delete();
           <th scope="row">'.$id.'</th>
           <td>'.$name.'</td>
           <td>'.$address.'</td>
-          <td>;
-          <button class="btn btn-warning"><a href="UpdateFormAdmin?id=<?php echo $row['id'];?>" class="text-light">UPDATE</a></button>
+          <td>
+          <button type="submit" name = "selectupdate" class="btn btn-primary" value ='.$id.'> <a href="updatelist" class="text-light" >Update</a></button>
           <button class="btn btn-danger"><input type="checkbox" name="stud_delete_id[]" value='.$id.'></button>
           </td>
           </tr>';
 
         }
     }
-
+   
   ?>
     
-
+  
     
   </tbody>
 </table>

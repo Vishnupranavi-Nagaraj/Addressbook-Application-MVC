@@ -4,6 +4,7 @@ Class Addresslist extends Controller{
         $this->model("addresslistmodel");
         $this->view("addresslist");
     }
+    
 }
 
 ?>

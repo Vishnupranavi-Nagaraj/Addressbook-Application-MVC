@@ -1,5 +1,7 @@
 <?php
 Class Addressaddmodel extends Database{
+
+
 public function add(){
 if (isset($_POST['savebutton'])) {
     $name = $_POST['name'];

@@ -43,7 +43,8 @@ $val->add();
             
             <div class="form-group">
                 <label for="country">Country</label>
-                <select class="form-control" id="country" name="country">
+                
+                <select class="form-control" id="country" name="country_id">
                     <option> Select country</option>
                   <?php
                   $counrseult=$val->displaycountry();
@@ -56,6 +57,7 @@ $val->add();
                     ?>
                 </select>
             </div>
+                
             <div class="form-group">
                 <label for="state">State</label>
                 <select class="form-control" id="state" name="state">
@@ -85,10 +87,10 @@ $val->add();
             <button type="submit" class="btn btn-primary" name="savebutton">Submit</button>
         </form>
 
-
+     
     </div>
     
-
+    
 </body>
 
 </html>
