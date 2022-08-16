@@ -1,5 +1,6 @@
 <?php
-function add($a){
+function redirect($msg,$url=''){
+    echo "<script type='text/javascript'>alert('$msg');location='$url';</script>";
     
-    return $a;
 }
+//helpers

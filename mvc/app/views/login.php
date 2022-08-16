@@ -1,7 +1,3 @@
-<?php
-$login = new Loginmodel();
-$login->log();
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +39,10 @@ $login->log();
       </div>
       
     </form>
-     
+    <?php
+    $obj=new Home();
+    $obj->login();
+    ?>
 
     <script type="text/javascript" src="http://localhost/mvc/public/assets/login.js">
 

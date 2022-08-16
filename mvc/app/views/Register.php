@@ -1,7 +1,3 @@
-<?php
-$loginAdmin = new Registermodel();
-$loginAdmin->reg();
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,15 +41,13 @@ $loginAdmin->reg();
         </div>
        
       <button type="submit" name="registerbutton" class="btn" onclick="validateform()">Register</button>
-      
       </div>
-      <p><a href="login" >Already an user?</a></p>
-     
-
-  
-   
-      
+      <p><a href="http://localhost/mvc/public/home/login" >Already an user?</a></p>
     </form>
+    <?php
+    $obj=new Home();
+    $obj->register();
+    ?>
     
     <script type="text/javascript" src="http://localhost/mvc/public/assets/register.js">
    

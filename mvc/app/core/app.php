@@ -1,15 +1,14 @@
 <?php
-
 Class App
 {
-    private $controller="home";
+    private $controller="Home";
     private $method="index";
     private $params=[];
-  public function __construct(){
+    public function __construct(){
     $url=$this->splitURL();
     //var_dump($url);
     //echo "<pre>";
-    if(file_exists("../app/controllers/". strtolower($url[0]) .".php"))
+        if(file_exists("../app/controllers/". strtolower($url[0]) .".php"))
  		{
  			$this->controller = strtolower($url[0]);
  			unset($url[0]);
@@ -28,7 +27,9 @@ Class App
  		}
 
  		//run the class and method
+		
  		$this->params = array_values($url);
+		//var_dump($this->params);
  		call_user_func_array([$this->controller,$this->method], $this->params);
 
 
