@@ -7,11 +7,11 @@ Class Authmodel extends Database
                VALUES ('$email', MD5('$password'))");   
     return $query;
     }
-    public function login($email,$password)
+    public function login_validation($email,$password)
     {
         $var  = mysqli_query($this->conn,"SELECT * FROM `user` WHERE email='$email' AND password=MD5('$password')");
         $rows = mysqli_num_rows($var);
-        return $rows;
+        return $rows;                                                                                                                           
 
     }
 

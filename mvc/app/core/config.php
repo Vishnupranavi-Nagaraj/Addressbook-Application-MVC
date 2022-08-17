@@ -12,6 +12,7 @@ define('DB_USER','root');
 define('DB_PASS','Weakpass$12');
 define('DB_HOST','localhost');
 
+define('BASEURL','http://localhost/mvc/public/');
 define('DEBUG',true);
 
 if(DEBUG)

@@ -6,30 +6,31 @@ Class Home extends Controller
         $this->model('Authmodel');
         $this->view("Register");  
     }
-    public function user(){
+    public function login()
+    {
         $this->model('Authmodel');
-        $this->view("Login"); 
+        $this->view("login"); 
     }
-        //$authobj->register($email,$password);
+        
 	public function register()
     {
-        if(isset($_POST['registerbutton'])){
+        if(isset($_POST['registerbutton']))
+        {
         $reg = new Authmodel();
         $email    = $_POST['email'];
-        //$email    = mysqli_real_escape_string($this->conn, $email);
         $password = $_POST['password'];
-        //$password = mysqli_real_escape_string($this->conn, $password);
         $insert=$reg->register($email,$password);
         if($insert)
         {
-            echo "inserted";
+            redirect("Please login!",'home/login');
         }
         else{
-            echo "not working";
+            redirect("Invalid details",'');
         }
-    }
+      }
      }
-     public function login()
+     
+     public function login_validation()
      {
         if (isset($_POST['loginbutton'])) {
         $log=new Authmodel();
@@ -37,13 +38,15 @@ Class Home extends Controller
         //$email = mysqli_real_escape_string($this->conn, $email);
         $password = stripslashes($_POST['password']);
         //$password = mysqli_real_escape_string($this->conn, $password);
-         $read=$log->login($email,$password);
+         $read=$log->login_validation($email,$password);
          if($read==1){
-            echo("Loggin");
-            //header("Location:addresslist");
+            redirect("Sucessfully logged in !",'');
+         }
+         else{
+            redirect("Invalid details!",'');
          }
 
      }
     }
-}
+    }
 ?>

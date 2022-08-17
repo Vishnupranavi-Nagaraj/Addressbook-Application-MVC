@@ -33,7 +33,7 @@
        
       <button type="submit" name="loginbutton" class="btn" onclick="validateForm()">Login</button>
       <p style="text-align: centre;">
-        <a href="addresslist.php">New user?</a>
+        <a href="index">New user?</a>
     </p>
     
       </div>
@@ -41,7 +41,7 @@
     </form>
     <?php
     $obj=new Home();
-    $obj->login();
+    $obj->login_validation();
     ?>
 
     <script type="text/javascript" src="http://localhost/mvc/public/assets/login.js">

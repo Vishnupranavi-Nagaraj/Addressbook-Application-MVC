@@ -42,18 +42,18 @@
        
       <button type="submit" name="registerbutton" class="btn" onclick="validateform()">Register</button>
       </div>
-      <p><a href="http://localhost/mvc/public/home/login" >Already an user?</a></p>
+      <p><a href="home/login" >Already an user?</a></p>
     </form>
-    <?php
-    $obj=new Home();
-    $obj->register();
-    ?>
+    
     
     <script type="text/javascript" src="http://localhost/mvc/public/assets/register.js">
    
     </script>
         
-       
+    <?php
+    $obj=new Home();
+    $obj->register();
+    ?>  
    
   </body>
 </html>
