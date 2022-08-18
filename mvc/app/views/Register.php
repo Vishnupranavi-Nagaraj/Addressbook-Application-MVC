@@ -51,7 +51,7 @@
     </script>
         
     <?php
-    $obj=new Home();
+    $obj=new Authcontroller();
     $obj->register();
     ?>  
    

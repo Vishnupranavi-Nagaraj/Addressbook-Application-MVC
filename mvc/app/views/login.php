@@ -40,7 +40,7 @@
       
     </form>
     <?php
-    $obj=new Home();
+    $obj=new Authcontroller();
     $obj->login_validation();
     ?>
 

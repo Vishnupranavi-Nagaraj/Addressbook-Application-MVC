@@ -1,13 +1,11 @@
 <?php
 Class App
 {
-    private $controller="Home";
-    private $method="index";
+    private $controller="Authcontroller";
+    private $method="main";
     private $params=[];
     public function __construct(){
-      $url=$this->splitURL();
-    //var_dump($url);
-    //echo "<pre>";
+    $url=$this->splitURL();
 	
         if(file_exists("../app/controllers/". strtolower($url[0]) .".php"))
  		{
@@ -38,7 +36,7 @@ Class App
   }
   private function splitURL(){
 	
-    $url = isset($_GET['url']) ? $_GET['url'] : "home";
+    $url = isset($_GET['url']) ? $_GET['url'] : "Authcontroller";
     return explode("/", filter_var(trim($url,"/"),FILTER_SANITIZE_URL));
     
   }

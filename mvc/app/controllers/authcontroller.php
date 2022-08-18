@@ -1,17 +1,19 @@
 <?php
-Class Home extends Controller
+Class Authcontroller extends Controller
 {
-    public function index()
+    //this is a main controller which renders default page of the website
+    public function main()
     {
         $this->model('Authmodel');
         $this->view("Register");  
     }
+    //This login method renders the realtion between the Authmodel and login
     public function login()
     {
         $this->model('Authmodel');
         $this->view("login"); 
     }
-        
+    //Here in this method we are initializing the values for register page
 	public function register()
     {
         if(isset($_POST['registerbutton']))
@@ -29,15 +31,14 @@ Class Home extends Controller
         }
       }
      }
+      //Here in this method we are initializing the values for login page
      
      public function login_validation()
      {
         if (isset($_POST['loginbutton'])) {
         $log=new Authmodel();
         $email = stripslashes($_POST['email']);   
-        //$email = mysqli_real_escape_string($this->conn, $email);
         $password = stripslashes($_POST['password']);
-        //$password = mysqli_real_escape_string($this->conn, $password);
          $read=$log->login_validation($email,$password);
          if($read==1){
             redirect("Sucessfully logged in !",'');

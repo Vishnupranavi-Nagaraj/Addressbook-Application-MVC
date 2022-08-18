@@ -38,12 +38,11 @@
             
             <button type="submit" class="btn btn-primary" name="savebutton">Submit</button>
             <?php
-            echo "hlo";
+            
             $info=new Addresscontroller();
-            echo "hi";
-            $info->add();
-            echo "ji";
-             echo $obj;
+            
+            $info->add_to_database();
+            
     ?>
         </form>
 

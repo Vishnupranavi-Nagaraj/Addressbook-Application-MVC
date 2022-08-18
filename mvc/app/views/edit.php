@@ -13,9 +13,10 @@
 </head>
 
 <body>
-<?php 
+<!-- <?php 
 //fetchuser details
-?>
+
+?> -->
     <div class="container my-5" >
         <form method="POST">
             <div class="form-group">
@@ -38,54 +39,14 @@
                 <input type="text" class="form-control" placeholder="Enter city" name="city" value=<?php echo $data['city'];?>>
 
             </div>
-            <div class="form-group">
-                <label for="country">Country</label>
-                <select class="form-control" id="country"  name="country">
-                <?php
-                 $counrseult=$update->updatecountry($data['country_id']);
-                  $convar=mysqli_fetch_assoc($counrseult);
-                  echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
-                   
-                  
-                  ?>
-                   <?php
-                 $counrseult=$update->update_remaining_country($data['country_id']);
-                  if($counrseult){
-                    while($convar=mysqli_fetch_assoc($counrseult)){
-                        echo '<option value = '.$convar['id'].'> '.$convar['name'].'</option>';
-                    }
-                  }
-                    ?>
-                    
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="state" >State</label>
-                <select class="form-control" id="state"name="state" ?>
-                <?php
-                  $starseult=$update->updatestate($data['state_id']);
-                  $stavar=mysqli_fetch_assoc($starseult);
-                  echo '<option value = '.$stavar['id'].'> '.$stavar['name'].'</option>';
-                 ?>
-    
-                <?php
-                  $starseult=$update->update_remaining_state($data['state_id']);
-                  if($starseult){
-                    while($stavar=mysqli_fetch_assoc($starseult)){
-                        echo '<option value = '.$stavar['id'].'> '.$stavar['name'].'</option>';
-                    }
-                  }
-                    ?>
-                   
-                </select>
-            </div>
-
             <button type="submit" class="btn btn-primary" name="updatebutton">Update</button>
             
            
         </form>
-
-        <?php $update->update_table($data['id']); ?>
+        <?php 
+        $update_obj=new Addresscontroller();
+        $update_obj->update($data['id']);
+        ?>
     </div>
 <div>
    
