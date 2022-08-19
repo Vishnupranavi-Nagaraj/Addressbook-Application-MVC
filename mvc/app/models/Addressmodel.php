@@ -32,14 +32,24 @@ Class Addressmodel extends Database
         return $del;
     }
      //this is for view all the the rows in address list page
-    public function display_db(){
+    public function display_db()
+    {
         
         $q="select*from `address`";
         $result=mysqli_query($this->conn,$q);
         return $result;
 
-      
       }
+      //This is for viewing the country in a dropdown
+      public function country_db(){
+        $con=mysqli_query($this->conn,"select*from country");
+        return $con;
+      }
+      public function state_db(){
+        $con=mysqli_query($this->conn,"select*from state");
+        return $con;
+      }
+
 
 }
 ?>

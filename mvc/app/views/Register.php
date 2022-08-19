@@ -9,7 +9,7 @@
   <body>
   
     <!-- header -->
-    <form id="create-account-form" method='POST' action="">
+    <form id="create-account-form" method='POST' action="<?php "echo BASEURL";?>authcontroller/login">
        <div class="title">
          <h2>Signup</h2>
        </div>

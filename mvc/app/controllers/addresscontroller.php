@@ -4,8 +4,10 @@ Class Addresscontroller extends Controller
 {
 //This add function renders model and a view for addlist page
 public function add(){
-    $this->model('Addressmodel');
-    $this->view('add');
+    $this->Addressmodel=$this->model('Addressmodel');
+    $country_data=$this->Addressmodel->country_db();
+    $state_data=$this->Addressmodel->state_db();
+    $this->view('add',$country_data,$state_data);
 }
 //This function renders model and a view for addresslist page
 public function display()
@@ -73,14 +75,32 @@ public function update($id){
      $val=new Addressmodel();
      $updateval=$val->update_button($name,$address,$city,$age,$country,$state,$id);
      if($updateval){
-        echo "Updated success";
+        //echo "Updated success";
+        redirect("Updated","http://localhost/mvc/public/Addresscontroller/display");
      }else{
         echo "not work";
      }
+}
+}
+//fetch values from country
+public function country()
+{
+    $valassign=new Addressmodel();
+    $country_value=$valassign->country_db();
+    if($country_value){
+        echo "Fetched successfully";
+    }
 
+}
+//fetch values from state
+public function state()
+{
+    $valassign=new Addressmodel();
+    $country_value=$valassign->state_db();
+    if($country_value){
+        echo "Fetched successfully";
+    }
 
 }
 }
-}
-
 ?>

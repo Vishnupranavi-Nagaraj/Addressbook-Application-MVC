@@ -21,6 +21,18 @@ Class Authcontroller extends Controller
         $reg = new Authmodel();
         $email    = $_POST['email'];
         $password = $_POST['password'];
+        if(empty($email)){
+            $emailEmptyErr = '<div class="error">
+                Email can not be empty
+            </div>';
+        }
+        else if (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $email)){
+            $emailErr = '<div class="error">
+                    Email is not valid.
+            </div>';
+        } else {
+            echo $email . '<br>';
+        }
         $insert=$reg->register($email,$password);
         if($insert)
         {

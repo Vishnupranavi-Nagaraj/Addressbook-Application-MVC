@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container" action=>
+    <div class="container">
     <form method="POST">
         <button class="btn btn-primary my-5">
             <a href="addressadd" class="text-light"> Add</a>

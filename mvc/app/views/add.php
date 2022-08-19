@@ -14,7 +14,7 @@
 
 <body>
     <div class="container my-5">
-        <form method="POST">
+        <form method="POST" action="<?php "echo BASEURL"; ?>addresscontroller/display">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name">
@@ -35,20 +35,53 @@
                 <input type="text" class="form-control" placeholder="Enter city" name="city">
 
             </div>
-            
+            <div class="form-group">
+                <label for="country">Country</label>
+               
+                <select class="form-control" id="country" name="country">
+                    <?php
+                    //$info->country();
+                    echo "hai";
+                    if($data)
+                    {
+                        while($convar=mysqli_fetch_assoc($data))
+                        {
+                        echo '<option value = ' . $convar['id'] . '> ' . $convar['name'] . '</option>';
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="country">State</label>
+                <select class="form-control" id="state" name="state">
+                    <?php
+                    //$info->country();
+                    if($data)
+                    {
+                        while($convar=mysqli_fetch_assoc($data))
+                        {
+                        echo '<option value = ' . $convar['id'] . '> ' . $convar['name'] . '</option>';
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+          
+
             <button type="submit" class="btn btn-primary" name="savebutton">Submit</button>
             <?php
-            
-            $info=new Addresscontroller();
-            
+
+            $info = new Addresscontroller();
+
             $info->add_to_database();
-            
-    ?>
+
+            ?>
         </form>
 
-     
+
     </div>
-    
+
 </body>
 
 </html>

@@ -21,3 +21,4 @@ if(DEBUG)
 }else{
 	ini_set("display_errors",0);
 }
+//tablename//addresstablename//countrytable define here
