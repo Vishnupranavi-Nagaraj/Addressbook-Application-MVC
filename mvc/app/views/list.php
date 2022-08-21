@@ -11,7 +11,7 @@
     <div class="container">
     <form method="POST">
         <button class="btn btn-primary my-5">
-            <a href="addressadd" class="text-light"> Add</a>
+            <a href="add" class="text-light"> Add</a>
             </button>
 
         <table class="table">

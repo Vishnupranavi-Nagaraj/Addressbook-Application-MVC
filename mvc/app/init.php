@@ -1,6 +1,6 @@
 <?php
-require "../app/core/config.php";
-require "../app/core/Database.php";
-require "../app/core/functions.php";
-require "../app/core/controller.php";
-require "../app/core/app.php";
+require "../app/helper/config.php";
+require "../app/helper/Database.php";
+require "../app/helper/helpers.php";
+require "../app/helper/controller.php";
+require "../app/helper/app.php";

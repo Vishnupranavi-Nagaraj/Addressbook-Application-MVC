@@ -22,3 +22,10 @@ if(DEBUG)
 	ini_set("display_errors",0);
 }
 //tablename//addresstablename//countrytable define here
+define('USERTABLE','user');
+define('ADDRESSTABLE','address');
+define('COUNTRYTABLE','country');
+define('STATETABLE','state');
+
+
+

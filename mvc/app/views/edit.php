@@ -13,12 +13,13 @@
 </head>
 
 <body>
-<!-- <?php 
-//fetchuser details
-
-?> -->
+<?php 
+        $update_obj=new Addresscontroller();
+        $update_obj->update($data['id']);
+        
+        ?>
     <div class="container my-5" >
-        <form method="POST" action="<?php "echo BASEURL";?>addresscontroller/display">
+        <form method="POST" action="">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" value=<?php echo $data['name'] ?>>
@@ -40,19 +41,12 @@
 
                 <div class="form-group">
                 <label for="country">Country</label>
-               
-                <select class="form-control" id="country" name="country">
-                    <?php
-                    //$info->country();
-                    echo "hai";
-                    if($data)
-                    {
-                        while($convar=mysqli_fetch_assoc($data))
-                        {
-                        echo '<option value = ' . $convar['id'] . '> ' . $convar['name'] . '</option>';
-                        }
-                    }
-                    ?>
+                <select class="form-control" id="country-dropdown" name="country">
+                    
+                
+                        <option value="<?php echo $data['id']; ?>"><?php echo $data["name"]; ?></option>
+                   
+                    
                 </select>
             </div>
             <div class="form-group">
@@ -62,7 +56,7 @@
                     //$info->country();
                     if($data)
                     {
-                        while($convar=mysqli_fetch_assoc($data))
+                        while($convar=mysqli_fetch_assoc($data[1]))
                         {
                         echo '<option value = ' . $convar['id'] . '> ' . $convar['name'] . '</option>';
                         }
@@ -77,10 +71,7 @@
             
            
         </form>
-        <?php 
-        $update_obj=new Addresscontroller();
-        $update_obj->update($data['id']);
-        ?>
+        
     </div>
 <div>
    

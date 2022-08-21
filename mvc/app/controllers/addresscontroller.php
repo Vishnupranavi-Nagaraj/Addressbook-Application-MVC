@@ -1,14 +1,31 @@
 <?php
-
 Class Addresscontroller extends Controller
 {
+   
+
 //This add function renders model and a view for addlist page
-public function add(){
-    $this->Addressmodel=$this->model('Addressmodel');
-    $country_data=$this->Addressmodel->country_db();
-    $state_data=$this->Addressmodel->state_db();
-    $this->view('add',$country_data,$state_data);
+public function add()
+{
+   
+       $this->Addressmodel=$this->model('Addressmodel');
+       if(isset($_GET['country_id'])){
+       $state_data=$this->Addressmodel->state_db($_GET['country_id']);
+       state_dropdown($state_data);
 }
+else{
+    $country_data=$this->Addressmodel->country_db();
+    $this->view('add',$country_data);
+}
+}
+
+public function select_state(){
+    $this->Addressmodel=$this->model('Addressmodel');
+      $state_data=$this->Addressmodel->state_db($_GET['country_id']);
+        $this->view('add',$state_data);    
+  
+}
+
+
 //This function renders model and a view for addresslist page
 public function display()
 {
@@ -16,14 +33,17 @@ public function display()
     $display_obj=new Addressmodel();
     $list_value= $display_obj->display_db();
     $this->view('list',$list_value);
- 
 }
 //This function renders model and a view for updatelist page
 public function update_main($buttonid)
 {
+    
     $this->Addressmodel = $this->model("Addressmodel");
-	$data = $this->Addressmodel->update($buttonid);
-	$this->view("edit",$data);
+	$update_data = $this->Addressmodel->update($buttonid);
+    $update_countryname = $this->Addressmodel->update_country($update_data['country_id']);
+	$this->view("edit",$update_data);
+    
+    
  
 }
 //we are setting the values to the addlist page
@@ -39,7 +59,7 @@ public function add_to_database()
     $add_obj=new Addressmodel();
     $insert_status=$add_obj->add_insert($name,$address,$city,$age,$country,$state);
     if($insert_status){ 
-       redirect("Values inserted Sucessfully",'');
+       redirect("Values inserted Sucessfully",'http://localhost/mvc/public/Addresscontroller/display');
     }
     else
     {
@@ -87,7 +107,8 @@ public function country()
 {
     $valassign=new Addressmodel();
     $country_value=$valassign->country_db();
-    if($country_value){
+    if($country_value)
+    {
         echo "Fetched successfully";
     }
 
@@ -95,11 +116,18 @@ public function country()
 //fetch values from state
 public function state()
 {
+    
+    if($_POST["country_id"]){
+    $country_id = $_POST["country_id"];
     $valassign=new Addressmodel();
-    $country_value=$valassign->state_db();
+    $country_value=$valassign->state_db($country_id); 
     if($country_value){
         echo "Fetched successfully";
     }
+}
+else {
+
+}
 
 }
 }

@@ -1,6 +1,12 @@
 <?php
 Class Authcontroller extends Controller
 {
+//     public $modelcontroller;
+
+//    public function __construct()
+//    {
+//      $this->modelcontroller=$this->model('Addressmodel');
+  // }
     //this is a main controller which renders default page of the website
     public function main()
     {
@@ -21,22 +27,21 @@ Class Authcontroller extends Controller
         $reg = new Authmodel();
         $email    = $_POST['email'];
         $password = $_POST['password'];
-        if(empty($email)){
-            $emailEmptyErr = '<div class="error">
-                Email can not be empty
-            </div>';
-        }
-        else if (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $email)){
-            $emailErr = '<div class="error">
-                    Email is not valid.
-            </div>';
-        } else {
-            echo $email . '<br>';
-        }
+        
         $insert=$reg->register($email,$password);
+ 
         if($insert)
         {
             redirect("Please login!",'home/login');
+        }
+        else if($email==""){
+            echo $error_email=  "<span class = 'error'>Please enter your email</span>"; 
+        }
+        else if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email)){
+            echo $error_email= "<span class='error'>Please enter a valid email</span>";
+        }
+        else if($password==""){
+            echo $error_password=  "<span class = 'error'>Password cannot be empty</span>"; 
         }
         else{
             redirect("Invalid details",'');
@@ -55,6 +60,15 @@ Class Authcontroller extends Controller
          if($read==1){
             redirect("Sucessfully logged in !",'');
          }
+         else if($email==""){
+            echo $error_email=  "<span class = 'error'>Please enter your email</span>"; 
+        }
+        else if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email)){
+            echo $error_email= "<span class='error'>Please enter a valid email</span>";
+        }
+        else if($password==""){
+            echo $error_password=  "<span class = 'error'>Password cannot be empty</span>"; 
+        }
          else{
             redirect("Invalid details!",'');
          }
