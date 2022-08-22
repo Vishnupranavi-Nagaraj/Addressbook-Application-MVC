@@ -18,7 +18,8 @@ define('DEBUG',true);
 if(DEBUG)
 {
 	ini_set("display_errors",1);
-}else{
+}else
+{
 	ini_set("display_errors",0);
 }
 //tablename//addresstablename//countrytable define here

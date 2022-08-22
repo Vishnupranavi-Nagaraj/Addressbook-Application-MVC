@@ -8,7 +8,8 @@
     </head>
   <body>
     <!-- header -->
-    <form id="create-account-form" method="POST" action="<?php "echo BASEURL";?>Addresscontroller/display">
+   
+    <form id="create-account-form" method="POST" action="<?php echo BASEURL;?>Addresscontroller/display">
        <div class="title">
          <h2>Signin</h2>
        </div>
@@ -40,9 +41,9 @@
       
     </form>
     <?php
-    $obj=new Authcontroller();
-    $obj->login_validation();
-    ?>
+    // $obj=new Authcontroller();
+    // $obj->login_validation();
+    // ?>
 
     <script type="text/javascript" src="http://localhost/mvc/public/assets/login.js">
 

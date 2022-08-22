@@ -17,7 +17,7 @@
         $update_obj=new Addresscontroller();
         $update_obj->update($data['id']);
         
-        ?>
+?>
     <div class="container my-5" >
         <form method="POST" action="">
             <div class="form-group">
@@ -42,15 +42,11 @@
                 <div class="form-group">
                 <label for="country">Country</label>
                 <select class="form-control" id="country-dropdown" name="country">
-                    
-                
-                        <option value="<?php echo $data['id']; ?>"><?php echo $data["name"]; ?></option>
-                   
-                    
+                        <option value="<?php echo $data['id']; ?>"><?php echo $data["name"]; ?></option> 
                 </select>
             </div>
             <div class="form-group">
-                <label for="country">State</label>
+                <label for="state">State</label>
                 <select class="form-control" id="state" name="state">
                     <?php
                     //$info->country();
@@ -67,7 +63,7 @@
           
             
             </div>
-            <button type="submit" class="btn btn-primary" name="updatebutton">Update</button>
+            <button type="submit" class="btn btn-primary" name="updatebutton" action="<?php echo BASEURL;?>Addresscontroller/display">Update</button>
             
            
         </form>

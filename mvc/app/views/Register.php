@@ -42,7 +42,7 @@
        
       <button type="submit" name="registerbutton" class="btn" onclick="validateform()">Register</button>
       </div>
-      <p><a href="home/login" >Already an user?</a></p>
+      <p><a href="http://localhost/mvc/public/authcontroller/login" >Already an user?</a></p>
     </form>
     
     

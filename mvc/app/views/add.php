@@ -44,7 +44,8 @@
                     <option value="">Select Country</option>
                     <?php
                     
-                    while($row = mysqli_fetch_array($data)) {
+                    while($row = mysqli_fetch_array($data))
+                    {
                     ?>
                         <option value="<?php echo $row['id']; ?>"><?php echo $row["name"]; ?></option>
                     <?php
@@ -63,8 +64,10 @@
             
  
             <script>
-                $(document).ready(function() {
-                    $('#country-dropdown').on('change', function() {
+                $(document).ready(function() 
+                {
+                    $('#country-dropdown').on('change', function()
+                     {
                         var country_id = this.value;
                        // alert(country_id)
                         $.ajax({
@@ -74,25 +77,24 @@
                                 country_id: country_id
                             },
                             
-                            success: function(html){
-                            
+                            success: function(html)
+                            {
                                 console.log(html)
                                 $("#state-dropdown").html(html);
                 },
         
-            error: function(){
+            error: function()
+            {
                 console.log("error")
-
-                            }
-                        });
-                    });
-                });
+            }
+            });
+          });
+        });
             </script>
-            <button type="submit" class="btn btn-primary" name="savebutton">Submit</button>
+            <button type="submit" class="btn btn-primary" name="savebutton" action="<?php echo BASEURL;?>Addresscontroller/display">Submit</button>
             <?php
 
             $info = new Addresscontroller();
-
             $info->add_to_database();
             // $info->select_state();
             

@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
 </head>
 <body>
+  <header>
+    <div class="container my-5">
+  <h1 style="text-align:center">Welcome to Address Application </h1>
+  <style>
+    body {background-color: lightgrey;}
+    h1   {color: black;}
+    h1   {font-style: oblique;}
+   </style>
+
+    </div>
+  </header>
     <div class="container">
     <form method="POST">
         <button class="btn btn-primary my-5">
@@ -44,7 +55,10 @@
           <button class="btn btn-danger"><input type="checkbox" name="stud_delete_id[]" value=<?php echo $row['id'] ?>></button>
           </td>
           </tr>
-<?php }} ?>
+<?php 
+}
+} 
+?>
     
   </tbody>
 </table>

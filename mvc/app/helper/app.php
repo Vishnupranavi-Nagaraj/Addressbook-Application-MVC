@@ -34,7 +34,8 @@ Class App
 
 
   }
-  private function splitURL(){
+  private function splitURL()
+  {
 	
     $url = isset($_GET['url']) ? $_GET['url'] : "Authcontroller";
     return explode("/", filter_var(trim($url,"/"),FILTER_SANITIZE_URL));

@@ -1,7 +1,12 @@
 <?php
 Class Addresscontroller extends Controller
 {
-   
+//    public $modelcontroller;
+
+//    public function __construct()
+//    {
+//     $this->modelcontroller=$this->model('Addressmodel');
+//    }
 
 //This add function renders model and a view for addlist page
 public function add()
@@ -18,7 +23,8 @@ else{
 }
 }
 
-public function select_state(){
+public function select_state()
+{
     $this->Addressmodel=$this->model('Addressmodel');
       $state_data=$this->Addressmodel->state_db($_GET['country_id']);
         $this->view('add',$state_data);    
@@ -41,15 +47,13 @@ public function update_main($buttonid)
     $this->Addressmodel = $this->model("Addressmodel");
 	$update_data = $this->Addressmodel->update($buttonid);
     $update_countryname = $this->Addressmodel->update_country($update_data['country_id']);
-	$this->view("edit",$update_data);
-    
-    
- 
+	$this->view("edit",$update_data); 
 }
 //we are setting the values to the addlist page
 public function add_to_database()
 {
- if(isset($_POST['savebutton'])) {
+ if(isset($_POST['savebutton'])) 
+ {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $city = $_POST['city'];
@@ -58,7 +62,8 @@ public function add_to_database()
     $state = '2';
     $add_obj=new Addressmodel();
     $insert_status=$add_obj->add_insert($name,$address,$city,$age,$country,$state);
-    if($insert_status){ 
+    if($insert_status)
+    { 
        redirect("Values inserted Sucessfully",'http://localhost/mvc/public/Addresscontroller/display');
     }
     else
@@ -66,9 +71,11 @@ public function add_to_database()
         redirect("Values are not inserted Sucessfully",'');
     }
 
-}}
+}
+}
 //Setting the values for a delete button in addresslist page
-public function delete(){
+public function delete()
+{
 if(isset($_POST['stud_delete_multiple_btn']))
 {
     $val=new Addressmodel();
@@ -83,7 +90,8 @@ if(isset($_POST['stud_delete_multiple_btn']))
 }
 }
 //Setting the values to a updatelist page
-public function update($id){
+public function update($id)
+{
     if(isset($_POST['updatebutton']))
     {  
      $name = $_POST['name'];
