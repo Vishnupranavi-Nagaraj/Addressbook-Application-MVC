@@ -1,3 +1,12 @@
+<?php
+//session_start();
+if(!isset($_SESSION['email']))
+{
+    header("<?php echo BASEURL;?>Authcontroller/login");
+    echo "not work";
+    
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +19,7 @@
 <body>
   <header>
     <div class="container my-5">
+      <?php echo $_SESSION['email']; ?>
   <h1 style="text-align:center">Welcome to Address Application </h1>
   <style>
     body {background-color: lightgrey;}

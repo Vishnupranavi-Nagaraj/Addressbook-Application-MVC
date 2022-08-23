@@ -14,7 +14,5 @@ function state_dropdown($state_data)
 
 }
 
-function update_country_dropdown($ctry_id){
 
-}
 

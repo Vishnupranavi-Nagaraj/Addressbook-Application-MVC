@@ -26,8 +26,8 @@ else{
 public function select_state()
 {
     $this->Addressmodel=$this->model('Addressmodel');
-      $state_data=$this->Addressmodel->state_db($_GET['country_id']);
-        $this->view('add',$state_data);    
+    $state_data=$this->Addressmodel->state_db($_GET['country_id']);
+    $this->view('add',$state_data);    
   
 }
 
@@ -43,11 +43,20 @@ public function display()
 //This function renders model and a view for updatelist page
 public function update_main($buttonid)
 {
-    
     $this->Addressmodel = $this->model("Addressmodel");
+    if(isset($_GET['country_id'])){
+       
+        $state_data=$this->Addressmodel->state_db($_GET['country_id']);
+        state_dropdown($state_data);
+    }
+    else{
 	$update_data = $this->Addressmodel->update($buttonid);
-    $update_countryname = $this->Addressmodel->update_country($update_data['country_id']);
-	$this->view("edit",$update_data); 
+    $selected_cname = $this->Addressmodel->update_country($update_data['country_id']);
+    $country_name = $this->Addressmodel->country_db();
+    $selected_state=$this->Addressmodel->update_state($update_data['state_id']);
+    $state_name = $this->Addressmodel->state_db($update_data['country_id']);
+	$this->view("edit",[$update_data,$selected_cname,$country_name,$selected_state,$state_name]); 
+    }   
 }
 //we are setting the values to the addlist page
 public function add_to_database()
@@ -58,8 +67,8 @@ public function add_to_database()
     $address = $_POST['address'];
     $city = $_POST['city'];
     $age = $_POST['age'];
-    $country = '1';
-    $state = '2';
+    $country = $_POST['country'];
+    $state = $_POST['state'];
     $add_obj=new Addressmodel();
     $insert_status=$add_obj->add_insert($name,$address,$city,$age,$country,$state);
     if($insert_status)

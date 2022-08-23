@@ -53,6 +53,7 @@ class Addressmodel extends Database
   {
     $const = 'constant';
     $con = mysqli_query($this->conn, "select*from {$const('COUNTRYTABLE')}");
+    
     return $con;
   }
   public function state_db($c_id)
@@ -63,8 +64,17 @@ class Addressmodel extends Database
   }
   public function update_country($c_id)
   {
+   
+   
     $const = 'constant';
-    $con = mysqli_query($this->conn, "select*from {$const('COUNTRYTABLE')} where country_id = $c_id");
+    $con = mysqli_query($this->conn, "select*from {$const('COUNTRYTABLE')} where id = $c_id");
+    
+    return $con;
+  }
+  public function update_state($sid)
+  {
+    $const = 'constant';
+    $con = mysqli_query($this->conn, "select*from {$const('STATETABLE')} where id = $sid");
     return $con;
   }
 }

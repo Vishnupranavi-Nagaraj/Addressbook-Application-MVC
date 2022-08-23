@@ -54,15 +54,21 @@ Class Authcontroller extends Controller
      
      public function login_validation()
      {
-        if (isset($_POST['loginbutton'])) {
+        if (isset($_POST['loginbutton']))
+        {
         $log=new Authmodel();
         $email = stripslashes($_POST['email']);   
         $password = stripslashes($_POST['password']);
-         $read=$log->login_validation($email,$password);
-         
-         if($email=="")
+        $read=$log->login_validation($email,$password);
+        if($read==1)
         {
-            echo $error_email=  "<span class = 'error'>Please enter your email</span>"; 
+            $_SESSION['email']=$email;
+            echo $_SESSION['email'];
+            redirect("Sucessfully logged in !",'');
+        }
+        else if($email=="")
+        {
+            echo $error_email= "<span class = 'error'>Please enter your email</span>"; 
         }
         else if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email))
         {
@@ -70,13 +76,9 @@ Class Authcontroller extends Controller
         }
         else if($password=="")
         {
-            echo $error_password=  "<span class = 'error'>Password cannot be empty</span>"; 
+            echo $error_password= "<span class = 'error'>Password cannot be empty</span>"; 
         }
-        else if($read==1)
-        {
-            redirect("Sucessfully logged in !",'');
-        }
-         else
+        else
          {
             redirect("Invalid details!",'');
          }
