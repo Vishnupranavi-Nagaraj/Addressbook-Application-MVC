@@ -14,7 +14,6 @@ Class Authmodel extends Database
     {
         $const = 'constant';
         $var  = mysqli_query($this->conn,"SELECT * FROM {$const('USERTABLE')} WHERE email='$email' AND password=MD5('$password')");
-        echo "heloloo".$email;
         $rows = mysqli_num_rows($var);
         return $rows;                                                                                                                           
 

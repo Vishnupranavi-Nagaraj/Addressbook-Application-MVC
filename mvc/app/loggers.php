@@ -1,19 +1,24 @@
 <?php
-class Errors
+class Logger
 {
     // error message to be logged
-    public function __construct()
+    public function logError($error)
     {
         $error_message = "This is an error message!";
-        // path of the log file where errors need to be logged
         $log_file = "./my-errors.log";
-        // setting error logging to be active
         ini_set("log_errors", TRUE); 
-        // setting the logging file in php.ini
         ini_set('error_log', $log_file);
-        // logging the error
         error_log($error_message);
+        fopen('Addressmodel','r');
+    }
+    public function logquery($query)
+    {
+        $error_message = "This is query message!";
+        $log_file = "./my-errors.log";
+        ini_set("log_errors", TRUE); 
+        ini_set('error_log', $log_file);
+        error_log($error_message);
+        fopen('Addressmodel','r');
     }
     }
-    //3 methods pass to be arguments
 ?>

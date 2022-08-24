@@ -1,14 +1,7 @@
 <?php
 Class Addresscontroller extends Controller
 {
-
-
-//     public $modelcontroller;
-
-//    public function __construct()
-//    {
-//      $this->modelcontroller=$this->model('Addressmodel');
-//    }
+   
 
 //This add function renders model and a view for addlist page
 public function add()

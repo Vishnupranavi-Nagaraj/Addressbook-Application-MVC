@@ -4,13 +4,7 @@
  */
 Class Authcontroller extends Controller
 {
-//     public $modelcontroller;
 
-//    public function __construct()
-//    {
-//      $this->modelcontroller=$this->model('Addressmodel');
-  //  }
-  
     /**this is a main controller which renders default page of the website*/
     public function main()
     {
@@ -28,11 +22,14 @@ Class Authcontroller extends Controller
     {
         if(isset($_POST['registerbutton']))
         {
-        $reg = new Authmodel();
+        $reg = new Database();
         $email    = $_POST['email'];
         $password = $_POST['password'];
-        
-        $insert=$reg->register($email,$password);
+        $table=USERTABLE;
+        $fields=array("email"=>"$email","password"=>"$password");
+       
+        $insert=$reg->insertinto($table,$fields);
+        //Insert into user(email,password)values($email,$password)
         // if($email==""){
         //     echo $error_email=  "<span class = 'error'>Please enter your email</span>"; 
         // }
@@ -44,10 +41,10 @@ Class Authcontroller extends Controller
         // }
         if($insert)
         {
-            redirect("Please login!",'authcontroller/login');
+            //redirect("Please login!",'authcontroller/login');
         }
         else{
-            redirect("Invalid details",'');
+            //redirect("Invalid details",'');
         }
       }
      }

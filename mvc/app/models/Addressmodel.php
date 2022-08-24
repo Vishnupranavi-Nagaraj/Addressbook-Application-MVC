@@ -1,7 +1,10 @@
-<?php
+s<?php
 class Addressmodel extends Database
 {
-  //this is for inserting query
+  // public function __construct()
+  //  {
+  //   $this->logger = new Logger();
+  //  }
   public function add_insert($name, $address, $city, $age, $country, $state)
   {
     $const = 'constant';
