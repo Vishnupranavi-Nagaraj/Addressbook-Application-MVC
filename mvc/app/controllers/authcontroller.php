@@ -10,6 +10,7 @@ Class Authcontroller extends Controller
 //    {
 //      $this->modelcontroller=$this->model('Addressmodel');
   //  }
+  
     /**this is a main controller which renders default page of the website*/
     public function main()
     {
@@ -32,18 +33,18 @@ Class Authcontroller extends Controller
         $password = $_POST['password'];
         
         $insert=$reg->register($email,$password);
-        if($email==""){
-            echo $error_email=  "<span class = 'error'>Please enter your email</span>"; 
-        }
-        else if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email)){
-            echo $error_email= "<span class='error'>Please enter a valid email</span>";
-        }
-        else if($password==""){
-            echo $error_password=  "<span class = 'error'>Password cannot be empty</span>"; 
-        }
-        else if($insert)
+        // if($email==""){
+        //     echo $error_email=  "<span class = 'error'>Please enter your email</span>"; 
+        // }
+        // else if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email)){
+        //     echo $error_email= "<span class='error'>Please enter a valid email</span>";
+        // }
+        // else if($password==""){
+        //     echo $error_password=  "<span class = 'error'>Password cannot be empty</span>"; 
+        // }
+        if($insert)
         {
-            redirect("Please login!",'home/login');
+            redirect("Please login!",'authcontroller/login');
         }
         else{
             redirect("Invalid details",'');
@@ -54,31 +55,35 @@ Class Authcontroller extends Controller
      
      public function login_validation()
      {
+        
         if (isset($_POST['loginbutton']))
         {
         $log=new Authmodel();
         $email = stripslashes($_POST['email']);   
         $password = stripslashes($_POST['password']);
         $read=$log->login_validation($email,$password);
+        
+        // if($email=="")
+        // {
+        //     echo $error_email=  "<span class = 'error'>Please enter your email</span>"; 
+        // }
+        // else if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email))
+        // {
+        //     echo $error_email= "<span class='error'>Please enter a valid email</span>";
+        // }
+        // else if($password=="")
+        // {
+        //     echo $error_password=  "<span class = 'error'>Password cannot be empty</span>"; 
+        // }
+        
         if($read==1)
         {
-            $_SESSION['email']=$email;
-            echo $_SESSION['email'];
-            redirect("Sucessfully logged in !",'');
+
+            $_SESSION['email'] = $email;
+           //echo $_SESSION['email'];
+            redirect("Welcome".$_SESSION['email'] , BASEURL."addresscontroller/display");
         }
-        else if($email=="")
-        {
-            echo $error_email= "<span class = 'error'>Please enter your email</span>"; 
-        }
-        else if(!preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email))
-        {
-            echo $error_email= "<span class='error'>Please enter a valid email</span>";
-        }
-        else if($password=="")
-        {
-            echo $error_password= "<span class = 'error'>Password cannot be empty</span>"; 
-        }
-        else
+         else
          {
             redirect("Invalid details!",'');
          }

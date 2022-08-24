@@ -15,4 +15,5 @@ class Errors
         error_log($error_message);
     }
     }
+    //3 methods pass to be arguments
 ?>

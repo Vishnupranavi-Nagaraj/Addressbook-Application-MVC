@@ -1,11 +1,13 @@
 <?php
 //session_start();
-if(!isset($_SESSION['email']))
+
+if(isset($_SESSION['email']) == null)
 {
-    header("<?php echo BASEURL;?>Authcontroller/login");
+    redirect("Please login to continue to view ","http://localhost/mvc/public/Authcontroller/login");
     echo "not work";
     
 }
+else{
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +21,7 @@ if(!isset($_SESSION['email']))
 <body>
   <header>
     <div class="container my-5">
-      <?php echo $_SESSION['email']; ?>
+      
   <h1 style="text-align:center">Welcome to Address Application </h1>
   <style>
     body {background-color: lightgrey;}
@@ -34,6 +36,11 @@ if(!isset($_SESSION['email']))
         <button class="btn btn-primary my-5">
             <a href="add" class="text-light"> Add</a>
             </button>
+
+            <button class="btn btn-warning my-5" style=float:right>
+            <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a>
+            </button>
+            
 
         <table class="table">
   <thead>
@@ -78,3 +85,4 @@ if(!isset($_SESSION['email']))
     
 </body>
 </html>
+<?php  } ?>

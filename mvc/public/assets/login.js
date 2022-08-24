@@ -2,6 +2,7 @@ var form=document.getElementById('create-account-form');
 var emailInput=document.getElementById('email');
 var passwordInput=document.getElementById('password');
 
+
 form.addEventListener('submit',(event)=>{
    
     validateForm();

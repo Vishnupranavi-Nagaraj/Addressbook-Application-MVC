@@ -1,11 +1,13 @@
 <?php
 Class Addresscontroller extends Controller
 {
-//    public $modelcontroller;
+
+
+//     public $modelcontroller;
 
 //    public function __construct()
 //    {
-//     $this->modelcontroller=$this->model('Addressmodel');
+//      $this->modelcontroller=$this->model('Addressmodel');
 //    }
 
 //This add function renders model and a view for addlist page
@@ -73,7 +75,7 @@ public function add_to_database()
     $insert_status=$add_obj->add_insert($name,$address,$city,$age,$country,$state);
     if($insert_status)
     { 
-       redirect("Values inserted Sucessfully",'http://localhost/mvc/public/Addresscontroller/display');
+       redirect("Values inserted Sucessfully",'http://localhost/mvc/public/Authcontroller/login');
     }
     else
     {
