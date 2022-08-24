@@ -25,8 +25,6 @@ public function select_state()
     $this->view('add',$state_data);    
   
 }
-
-
 //This function renders model and a view for addresslist page
 public function display()
 {
@@ -64,15 +62,17 @@ public function add_to_database()
     $age = $_POST['age'];
     $country = $_POST['country'];
     $state = $_POST['state'];
-    $add_obj=new Addressmodel();
-    $insert_status=$add_obj->add_insert($name,$address,$city,$age,$country,$state);
+    $add_obj=new Database();
+    $table=ADDRESSTABLE;
+    $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country"=>$country,"state"=>$state);
+    $insert_status=$add_obj->insertinto($table,$fields);
     if($insert_status)
     { 
-       redirect("Values inserted Sucessfully",'http://localhost/mvc/public/Authcontroller/login');
+       //redirect("Values inserted Sucessfully",'http://localhost/mvc/public/Authcontroller/login');
     }
     else
     {
-        redirect("Values are not inserted Sucessfully",'');
+       // redirect("Values are not inserted Sucessfully",'');
     }
 
 }

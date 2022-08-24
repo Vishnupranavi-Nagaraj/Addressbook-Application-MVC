@@ -15,38 +15,19 @@ class Database
         }
 
     }
-
-    // public function convertArray($fields)
-    // {
-    //     //process
-    //     //keys//values
-    //     print_r($fields);
-    //     foreach($fields as $key=>$value){
-    //        print_r("$key=$value"); 
-    //     }
-    // }
-
     public function insertinto($table,$fields)
     {
-       // print_r($fields);
-       // exit;
-    
-
        foreach($fields as $key=>$value){
-        //print_r("$key=$value"); 
-        //print "Insert into $table (arraykeys ) values (arrayvalues(fields))";
-        //insert into tsbl_name(``,``) values ('','');
-        //insert into table values('$emaolid','$pwd');
-        
-        print_r("Insert into $table ($key) values($value)");
-        $insert=mysqli_query($this->conn,"Insert into $table ($key) values($value)");
-        //
-        return $insert;
-       }
+       $k[]=$key;
+       $v[]="'".$value."'";
+     }
+     $key=implode(",",$k);
+     $value=implode(",",$v);
+     $insert=mysqli_query($this->conn,"Insert into $table ($key) values($value)");
+     print_r("Insert into $table ($key) values($value)");
+     return $insert;
+    // echo $insert;
     }
-    
-    
-
 }
 
 

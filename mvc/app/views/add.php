@@ -97,7 +97,7 @@
         </form>
 
     </div>
-    <script type="text/javascript" src="http://localhost/mvc/public/assets/add.js"></script>
+    <!-- <script type="text/javascript" src="http://localhost/mvc/public/assets/add.js"></script> -->
 </body>
 
 </html>

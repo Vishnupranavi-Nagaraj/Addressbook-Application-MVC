@@ -26,10 +26,9 @@ Class Authcontroller extends Controller
         $email    = $_POST['email'];
         $password = $_POST['password'];
         $table=USERTABLE;
-        $fields=array("email"=>"$email","password"=>"$password");
-       
+        $fields=array("email"=>"$email","password"=>md5($password));
         $insert=$reg->insertinto($table,$fields);
-        //Insert into user(email,password)values($email,$password)
+
         // if($email==""){
         //     echo $error_email=  "<span class = 'error'>Please enter your email</span>"; 
         // }
@@ -41,10 +40,10 @@ Class Authcontroller extends Controller
         // }
         if($insert)
         {
-            //redirect("Please login!",'authcontroller/login');
+            redirect("Please login!",'authcontroller/login');
         }
         else{
-            //redirect("Invalid details",'');
+            redirect("Invalid details",'');
         }
       }
      }
