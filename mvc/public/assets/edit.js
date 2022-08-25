@@ -1,93 +1,105 @@
-var namevalue=document.getElementById('name');
-var address=document.getElementById('address');
-var age=document.getElementById('age');
-var city=document.getElementById('city');
-var country=document.getElementById('country');
-var state=document.getElementById('state');
+const form = document.querySelector('#add');
+const namevalue = document.querySelector('#name');
+console.log(form)
+console.log(namevalue)
+const addressvalue = document.querySelector('#address');
+const agevalue = document.querySelector('#age');
+const cityvalue = document.querySelector('#city');
+const countryvalue = document.querySelector('#country-dropdown');
+const statevalue = document.querySelector('#state-dropdown');
+console.log(statevalue)
+
 
 form.addEventListener('submit',(event)=>{
-    validateForm();
-    if(isFormValid()==true){
+  validateForm();
+  if(isFormValid()==true)
+  {
       form.submit();
-      //  // ..//
-    }else{
-       event.preventDefault();
-    }
+  }
+  else
+  {
+      event.preventDefault();
+      return false;
+  }
 });
-// prevent submit form even one field is not valid
-function isFormValid(){
-  const inputContainers=form.querySelectorAll('.input-group');
-  let result=true;
+
+function isFormValid()
+{
+  const inputContainers = form.querySelectorAll('.form-group')
+  let result = true;
   inputContainers.forEach((container)=>{
-    if(container.classList.contains('error')){
-      result=false;
-    }
-  });
+      if(container.classList.contains('error'))
+      {
+          result = false;
+      }
+  })
   return result;
-
 }
-function validateForm() {
-   
-    //email
-    if(namevalue.value.trim()==''){
-     setError(namevalue,'Provide Email Address');
-    }
-    else{
-       setSuccess(namevalue);
-    }
-    
-    //address
-    if(address.value.trim()==''){
-      setError(address,'Provide address');
-     }
-     else{
-        setSuccess(address);
-     }
-     //city
-     if(city.value.trim()==''){
-      setError(city,'Provide city name');
-     }
-     else{
-        setSuccess(city);
-     }
-      //age
-      if(age.value.trim()==''){
-        setError(age,'Provide city name');
-       }
-       else{
-          setSuccess(age);
-       }
-        //country
-      if(country.value.trim()==''){
-        setError(country,'Provide country name');
-       }
-       else{
-          setSuccess(country);
-       }
-         //country
-      if(state.value.trim()==''){
-        setError(state,'Provide state name');
-       }
-       else{
-          setSuccess(state);
-       }
-       function setError(element,errorMessage){
+function validateForm(){
+
+  if(namevalue.value.trim()=='')
+  {
+      setError(namevalue,'Name cannnot be blank');
+  }
+  else{
+      setSuccess(namevalue,"valid Name");
+  }
+  if(addressvalue.value.trim()=='')
+  {
+      setError(addressvalue,'Address cannnot be blank');
+  }
+  else{
+      setSuccess(addressvalue,"valid Name");
+  }
+  if(agevalue.value.trim()=='')
+  {
+      setError(agevalue,'Age cannnot be blank');
+  }
+  else{
+      setSuccess(agevalue,"valid Name");
+  }
+  if(cityvalue.value.trim()=='')
+  {
+      setError(cityvalue,'City cannnot be blank');
+  }
+  else{
+      setSuccess(cityvalue,"valid Name");
+  }
+  if(countryvalue.selectedIndex == 0)
+  {
+      setError(countryvalue,'Country cannnot be blank');
+  }
+  else{
+      setSuccess(countryvalue,);
+  }
+  if(statevalue.selectedIndex == 0)
+  {
+      setError(statevalue,'State cannnot be blank');
+  }
+  else{
+      setSuccess(statevalue,);
+  }
   
-        const parent=element.parentElement;
-        console.log(parent);
-        if(parent.classList.contains('success')){
-          parent.classList.remove('success');
-        } 
-        parent.classList.add('error');
-        const paragraph=parent.querySelector('p');
-        paragraph.textContent=errorMessage;
-      }
-      function setSuccess(element){
-        const parent=element.parentElement;
-        if(parent.classList.contains('error')){
-          parent.classList.remove('error');
-        }
-        parent.classList.add('success');
-      }
 }
-
+function setError(element,errorMessage)
+{
+  const parent = element.parentElement;
+  parent.classList.add('error');
+  if(parent.classList.contains('success'))
+  {
+        parent.classList.remove('success');
+  }
+  const message = parent.querySelector('p');
+  message.textContent = errorMessage;
+}
+function setSuccess(element,successMessage)
+{
+  const parent = element.parentElement;
+  parent.classList.add('success');
+  if(parent.classList.contains('error'))
+  {
+      parent.classList.remove('error');
+  }
+  const message = parent.querySelector('p');
+  message.textContent=successMessage;
+}

@@ -8,7 +8,7 @@ $pathViews = 'Models/' . $class . '.php';
 
     if (file_exists($pathContorllers))
     {
-    require_once $pathContorllers;
+    require_once $pathControllers;
     } 
     else if (file_exists($pathhelper)) 
     {
@@ -18,7 +18,8 @@ $pathViews = 'Models/' . $class . '.php';
     {
     require_once $pathModels ;
     }
-    else if (file_exists($pathviews)) {
+    else if (file_exists($pathviews)) 
+    {
     require_once $pathViews ;
 }
 });

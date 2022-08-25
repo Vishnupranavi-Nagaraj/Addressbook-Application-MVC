@@ -76,7 +76,6 @@ Class Authcontroller extends Controller
         {
 
             $_SESSION['email'] = $email;
-           //echo $_SESSION['email'];
             redirect("Welcome".$_SESSION['email'] , BASEURL."addresscontroller/display");
         }
          else
@@ -86,5 +85,27 @@ Class Authcontroller extends Controller
 
      }
     }
+    function emailValidate()
+    {
+        if(isset($_POST['submit']))
+        {
+            $email = $_POST['email'];
+            if($email == "")
+            {
+                echo $error_email=  "<span class = 'error'>Please enter candidate email</span>"; 
+            }
+         }
+    }
+    function passwordValidate()
+  {
+      if(isset($_POST['sub_btn']))
+      {
+          $password = $_POST['rolePassword'];
+          if($password == "")
+          {
+             echo $error_password =  "<span class='error'>Please enter password</span>";
+          }
+      }
+  }
     }
 ?>

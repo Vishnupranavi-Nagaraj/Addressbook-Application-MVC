@@ -17,18 +17,31 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>addresslist</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-  <header>
-    <div class="container my-5">
-      
-  <h1 style="text-align:center">Welcome to Address Application </h1>
-  <style>
-    body {background-color: lightgrey;}
-    h1   {color: black;}
-    h1   {font-style: oblique;}
-   </style>
+  <header class="header">
+    <div class="container">
+    <i class="fa-solid fa-user"></i>
+  <h2 style="text-align:center">
 
+  Hai,
+  <?php  echo $_SESSION['email']; ?>
+  .Welcome to Address Book
+  <button class="btn btn-warning my-2" style=float:right>
+  <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light" > Logout</a>
+ 
+ 
+    </button>
+  <style>
+    .header {background-color: blue;}
+    body {background-color: white;}
+    h2   {color: pink;}
+    h2   {font-style: normal;}
+    h2   {height:80px;}
+   </style>
+</h2>
     </div>
   </header>
     <div class="container">
@@ -37,9 +50,9 @@ else{
             <a href="add" class="text-light"> Add</a>
             </button>
 
-            <button class="btn btn-warning my-5" style=float:right>
+            <!-- <button class="btn btn-warning my-5" style=float:right>
             <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a>
-            </button>
+            </button> -->
             
 
         <table class="table">
@@ -49,6 +62,7 @@ else{
       <th scope="col">S.no</th>
       <th scope="col">Name</th>
       <th scope="col">Address</th>
+      <th scope="col">Actions</th>
       <button type="submit" name="stud_delete_multiple_btn" class="btn btn-danger">Delete</button>
     </tr>
     
@@ -67,6 +81,7 @@ else{
           <th scope="row"><?php echo $row['id'] ?></th>
           <td><?php echo $row['name'] ?></td>
           <td><?php echo $row['address'] ?></td>
+          
           <td>
           <button type="submit" name = "selectupdate" class="btn btn-primary" value =<?php echo $row['id'] ?>> <a href="update_main/<?php echo $row['id'] ?>" class="text-light" >Update</a></button>
           <button class="btn btn-danger"><input type="checkbox" name="stud_delete_id[]" value=<?php echo $row['id'] ?>></button>
@@ -85,4 +100,6 @@ else{
     
 </body>
 </html>
-<?php  } ?>
+<?php 
+ } 
+ ?>

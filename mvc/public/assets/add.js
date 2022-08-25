@@ -11,7 +11,6 @@ console.log(statevalue)
 
 
 form.addEventListener('submit',(event)=>{
-  // alert('hello');
   validateForm();
   if(isFormValid()==true)
   {
@@ -37,7 +36,6 @@ function isFormValid()
   return result;
 }
 function validateForm(){
-  alert('hello');
 
   if(namevalue.value.trim()=='')
   {
@@ -46,41 +44,42 @@ function validateForm(){
   else{
       setSuccess(namevalue,"valid Name");
   }
-  if(emailInput.value.trim()=='')
+  if(addressvalue.value.trim()=='')
   {
-      setError(emailInput,"Email cannot be blank");
-  }
-  else if(!isEmail(emailInput.value))
-  {
-      setError(emailInput,"Not a valid Email ID");
-  }
-  else
-  {
-      setSuccess(emailInput,"Valid Email");
-  }
-  if(passwordInput.value.trim()=='')
-  {
-      setError(passwordInput,"Password cannot be blank");
-  }
-  else if(!isPassword(passwordInput.value))
-  {
-      setError(passwordInput,"Not a valid password");
+      setError(addressvalue,'Address cannnot be blank');
   }
   else{
-      setSuccess(passwordInput,"Valid Password");
+      setSuccess(addressvalue,"valid Name");
   }
-  if(confirmpasswordInput.value.trim()=='')
+  if(agevalue.value.trim()=='')
   {
-      setError(confirmpasswordInput,"Password cannot be empty");
+      setError(agevalue,'Age cannnot be blank');
   }
-  else if((confirmpasswordInput.value )!=(passwordInput.value))
+  else{
+      setSuccess(agevalue,"valid Name");
+  }
+  if(cityvalue.value.trim()=='')
   {
-      setError(confirmpasswordInput,"Password does not match");
+      setError(cityvalue,'City cannnot be blank');
   }
-  else 
+  else{
+      setSuccess(cityvalue,"valid Name");
+  }
+  if(countryvalue.selectedIndex == 0)
   {
-      setSuccess(confirmpasswordInput,"password matched");
+      setError(countryvalue,'Country cannnot be blank');
   }
+  else{
+      setSuccess(countryvalue,);
+  }
+  if(statevalue.selectedIndex == 0)
+  {
+      setError(statevalue,'State cannnot be blank');
+  }
+  else{
+      setSuccess(statevalue,);
+  }
+  
 }
 function setError(element,errorMessage)
 {
@@ -103,24 +102,4 @@ function setSuccess(element,successMessage)
   }
   const message = parent.querySelector('p');
   message.textContent=successMessage;
-}
-function isUserName(rolename)
-{
-  const rolenamePattern = /^[a-zA-Z\._-]+$/;
-  return rolenamePattern.test(rolename);
-}
-function isEmail(email)
-{
-  const emailPattern = /^([a-zA-Z0-9]{5,20})+@([a-zA-Z]{3,5})+\.([a-zA-Z\.]{3,10})+$/;
-  return emailPattern.test(email);
-}
-function isPassword(password)
-{
-  const passwordPattern = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  return passwordPattern.test(password);
-}
-function isConfirmPassword(confirmpassword)
-{
-  const confirmpasswordPattern = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  return confirmpasswordPattern.test(confirmpassword);
 }

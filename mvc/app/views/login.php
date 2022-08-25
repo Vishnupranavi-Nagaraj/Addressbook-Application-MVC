@@ -1,3 +1,6 @@
+<?php
+$validate = new Authcontroller();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,6 +24,7 @@
            <i class="fas fa-check-circle"></i>
            <i class="fas fa-exclamation-circle"></i>
            <p>Error Message</p>
+           <span><?php $validate->emailValidate();?></span>
         </div>
         
         <!-- password -->
@@ -30,6 +34,8 @@
            <i class="fas fa-check-circle"></i>
            <i class="fas fa-exclamation-circle"></i>
            <p>Error Message</p>
+           <span><?php $validate->passwordValidate();?></span>
+
         </div>
        
       <button type="submit" name="loginbutton" class="btn" onclick="validateForm()">Login</button>
@@ -51,4 +57,3 @@
     
   </body>
 </html>
-

@@ -1,10 +1,12 @@
-s<?php
+<?php
 class Addressmodel extends Database
 {
-  // public function __construct()
-  //  {
-  //   $this->logger = new Logger();
-  //  }
+  //
+  public function __construct()
+   {
+    parent::__construct();
+    $this->logger = new Logger();
+   }
   public function add_insert($name, $address, $city, $age, $country, $state)
   {
     $const = 'constant';
@@ -67,8 +69,6 @@ class Addressmodel extends Database
   }
   public function update_country($c_id)
   {
-   
-   
     $const = 'constant';
     $con = mysqli_query($this->conn, "select*from {$const('COUNTRYTABLE')} where id = $c_id");
     

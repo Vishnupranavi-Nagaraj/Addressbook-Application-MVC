@@ -1,8 +1,6 @@
 <?php
 Class Addresscontroller extends Controller
 {
-   
-
 //This add function renders model and a view for addlist page
 public function add()
 {
@@ -29,8 +27,9 @@ public function select_state()
 public function display()
 {
     $this->model('Addressmodel');
-    $display_obj=new Addressmodel();
-    $list_value= $display_obj->display_db();
+    $display_obj=new Database();
+    $table=ADDRESSTABLE;
+    $list_value= $display_obj->display_into($table);
     $this->view('list',$list_value);
 }
 //This function renders model and a view for updatelist page
@@ -62,9 +61,12 @@ public function add_to_database()
     $age = $_POST['age'];
     $country = $_POST['country'];
     $state = $_POST['state'];
-    $add_obj=new Database();
+    
+    $add_obj=new Database();//addressmodel
     $table=ADDRESSTABLE;
-    $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country"=>$country,"state"=>$state);
+    $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country_id"=>$country,"state_id"=>$state);
+    //validate in model//
+    //send to model
     $insert_status=$add_obj->insertinto($table,$fields);
     if($insert_status)
     { 
@@ -82,10 +84,11 @@ public function delete()
 {
 if(isset($_POST['stud_delete_multiple_btn']))
 {
-    $val=new Addressmodel();
+    $val=new Database();
     $all_id = $_POST['stud_delete_id'];
     $extract_id = implode(',' , $all_id);
-    $delte=$val->delete_db($extract_id);
+    $table=ADDRESSTABLE;
+    $delte=$val->delete_into($table,$extract_id);
     if($delte){
         redirect("Record Deleted sucessfully",'');
     }else{
@@ -102,10 +105,12 @@ public function update($id)
 	 $address = $_POST['address'];
      $city = $_POST['city'];
 	 $age = $_POST['age'];
-     $country = '1';
-     $state = '2';
-     $val=new Addressmodel();
-     $updateval=$val->update_button($name,$address,$city,$age,$country,$state,$id);
+     $country = $_POST['country'];
+     $state = $_POST['state'];
+     $val=new Database();
+     $table=ADDRESSTABLE;
+     $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country_id"=>$country,"state_id"=>$state);
+     $updateval=$val->update_into($table,$fields,$id);
      if($updateval){
         //echo "Updated success";
         redirect("Updated","http://localhost/mvc/public/Addresscontroller/display");
@@ -136,11 +141,66 @@ public function state()
     if($country_value){
         echo "Fetched successfully";
     }
-}
-else {
+   }
+   else {
+    
+   }
+  }
+  public function nameValidate()
+  {
+     if(isset($_POST['savebutton']))
+      {
+        $name = $_POST['name'];
+        if($name == "")
+        {
+            echo $error_name = "<span class = 'error'>Please enter your Name</span>"; 
+        }
+      }
+  }
+  public function addressValidate()
+  {
+     if(isset($_POST['savebutton']))
+      {
+        $address = $_POST['address'];
+        if($address == "")
+        {
+            echo $error_address = "<span class = 'error'>Please enter your address</span>"; 
+        }
+      }
+  }
+  public function cityValidate()
+  {
+     if(isset($_POST['savebutton']))
+      {
+        $city = $_POST['city'];
+        if($city == "")
+        {
+            echo $error_city = "<span class = 'error'>Please enter your address</span>"; 
+        }
+      }
+  }
+  public function ageValidate()
+  {
+     if(isset($_POST['savebutton']))
+      {
+        $age = $_POST['address'];
+        if($age == "")
+        {
+            echo $error_age = "<span class = 'error'>Please enter your address</span>"; 
+        }
+      }
+  }
+  public function countryValidate()
+  {
+     if(isset($_POST['savebutton']))
+      {
+        $country= $_POST['address'];
+        if($country == "country")
+        {
+            echo $error_country = "<span class = 'error'>Please enter your address</span>"; 
+        }
+      }
+  }
 
-}
-
-}
 }
 ?>

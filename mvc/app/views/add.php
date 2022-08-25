@@ -1,3 +1,6 @@
+<?php
+$validate = new Addresscontroller();
+?>
 <!Doctype html>
 <html lang="en">
 
@@ -11,8 +14,36 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Addressadd</title>
 </head>
-
+<style>
+    .form-control
+     {
+        width: 400px;
+        height: 40px;
+    }
+    .container{
+    margin-left: 35%;
+    margin-right:35%;
+    width: 100%;
+    }
+</style>
 <body>
+<header class="header">
+    <div class="container">
+
+
+  <strong><h2>ADD USER DETAILS</h2></strong>
+  
+  <style>
+    .header {background-color: blue;}
+    body {background-color: white;}
+    h2  {color: pink;}
+    h2  {font-style: sans-serif;}
+    h2  {height:60px;}
+    /* h2 {text-align: center;} */
+   </style>
+
+    </div>
+  </header>
 
     <div class="container my-5">
 
@@ -20,28 +51,33 @@
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" id="name" onblur = "validateForm()">
-                <p>Error</p>
-               
+                <p></p>
+                <span><?php $validate->nameValidate();?></span>
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="textarea" class="form-control" placeholder="Enter address" name="address" id="address">
-                
+                <input type="textarea" class="form-control" placeholder="Enter address" name="address" id="address" onblur = "validateForm()">
+                <p></p>
+                <span><?php $validate->addressValidate();?></span>
             </div>
             <div class="form-group">
                 <label>Age</label>
-                <input type="text" class="form-control" placeholder="Enter age" name="age" id="age">
+                <input type="text" class="form-control" placeholder="Enter age" name="age" id="age" onblur = "validateForm()">
+                <p></p>
+                <span><?php $validate->ageValidate();?></span>
                 
             </div>
             <div class="form-group">
                 <label>City</label>
-                <input type="text" class="form-control" placeholder="Enter city" name="city" id="city">
+                <input type="text" class="form-control" placeholder="Enter city" name="city" id="city" onblur = "validateForm()">
+                <p></p>
+                <span><?php $validate->cityValidate();?></span>
                 
             </div>
             <div class="form-group">
                 <label for="country">Country</label>
 
-                <select class="form-control" id="country-dropdown" name="country">
+                <select class="form-control" id="country-dropdown" name="country" required>
                     <option value="">Select Country</option>
                     <?php
 
@@ -52,14 +88,17 @@
                     }
                     ?>
                 </select>
+                <p></p>
+                <span><?php $validate->countryValidate();?></span>
             </div>
 
             <div class="form-group">
                 <label for="state">State</label>
-                <select class="form-control" id="state-dropdown" name="state">
+                <select class="form-control" id="state-dropdown" name="state" required>
                     <option value="">Select State</option>
                 </select>
-
+                
+                
             </div>
 
 
@@ -67,7 +106,6 @@
                 $(document).ready(function() {
                     $('#country-dropdown').on('change', function() {
                         var country_id = this.value;
-                        // alert(country_id)
                         $.ajax({
                             url: "/addresscontroller/add/".country_id,
                             type: 'GET',
@@ -89,15 +127,15 @@
             </script>
             
             <button type="submit" class="btn btn-primary" name="savebutton" id = "submit-button" onclick="validateForm()">Submit</button>
+            <button type="submit" class="btn btn-primary" name="cancel" ><a href ="display" class = "text-light">Cancel</button>
             <?php
             $info = new Addresscontroller();
             $info->add_to_database();
-            // $info->select_state();
             ?>
         </form>
 
     </div>
-    <!-- <script type="text/javascript" src="http://localhost/mvc/public/assets/add.js"></script> -->
+    <script type="text/javascript" src="http://localhost/mvc/public/assets/add.js"></script>
 </body>
 
 </html>
