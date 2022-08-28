@@ -12,7 +12,6 @@ $validate = new Authcontroller();
   <body>
   
     <!-- header -->
-    <?php echo BASEURL; ?>
   <form id="create-account-form" method='POST' action=''>
        <div class="title">
          <h2>Signup</h2>

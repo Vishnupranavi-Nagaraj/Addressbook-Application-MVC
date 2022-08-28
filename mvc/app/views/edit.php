@@ -102,8 +102,7 @@ $validate=new Addresscontroller();
                 
                 </div>
                 <button type="submit" class="btn btn-primary" name="updatebutton" action="<?php echo BASEURL;?>Addresscontroller/display">Update</button>
-                <button type="submit" class="btn btn-primary" name="cancel" >Cancel</button>
-                <!-- <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a> -->
+                <button type="submit" class="btn btn-primary" name="cancel" ><a href ="http://localhost/mvc/public/Addresscontroller/display" class = "text-light">Cancel</button>                <!-- <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a> -->
             </div>
             <script>
                 $(document).ready(function() 

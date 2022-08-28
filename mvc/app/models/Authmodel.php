@@ -1,13 +1,18 @@
 <?php
 Class Authmodel extends Database
 {
-    //This is for register page insert query
+    //This is for register page inse
+    public function __construct()
+    {
+        parent::__construct();
+        $this->logger = new Logger();
+    }
     public function register($email,$password)
     {
-    $const = 'constant';
-    $query    = mysqli_query($this->conn,"INSERT into {$const('USERTABLE')} (email, password)
-               VALUES ('$email', MD5('$password'))");   
-    return $query;
+        $create=new Database($this->details);
+        $fields=array("email"=>"$email","password"=>md5($password));
+        $query=$create->insertinto(USERTABLE,$fields);
+        return $query;
     }
     //Here we are checking with username and password is present in DB
     public function login_validation($email,$password)

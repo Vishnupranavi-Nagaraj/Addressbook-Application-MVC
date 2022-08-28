@@ -31,8 +31,6 @@ else{
   .Welcome to Address Book
   <button class="btn btn-warning my-2" style=float:right>
   <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light" > Logout</a>
- 
- 
     </button>
   <style>
     .header {background-color: blue;}

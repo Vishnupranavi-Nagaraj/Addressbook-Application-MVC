@@ -1,11 +1,9 @@
 <?php
 spl_autoload_register(function ($class) { 
 
-$pathContorllers = 'Controllers/' . $class . '.php';
+$pathContorllers = 'controllers/' . $class . '.php';
 $pathhelper = 'helper/' . $class . '.php';
-$pathModels = 'Models/' . $class . '.php';
-$pathViews = 'Models/' . $class . '.php';
-
+$pathModels = 'models/' . $class . '.php';
     if (file_exists($pathContorllers))
     {
     require_once $pathControllers;
@@ -18,8 +16,5 @@ $pathViews = 'Models/' . $class . '.php';
     {
     require_once $pathModels ;
     }
-    else if (file_exists($pathviews)) 
-    {
-    require_once $pathViews ;
-}
+    
 });
