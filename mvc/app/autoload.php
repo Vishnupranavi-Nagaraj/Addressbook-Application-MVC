@@ -1,4 +1,7 @@
 <?php
+//class
+
+//constructor
 spl_autoload_register(function ($class) { 
 
 $pathContorllers = 'controllers/' . $class . '.php';
@@ -18,3 +21,5 @@ $pathModels = 'models/' . $class . '.php';
     }
     
 });
+//basecontroller
+//extends //auth,address//

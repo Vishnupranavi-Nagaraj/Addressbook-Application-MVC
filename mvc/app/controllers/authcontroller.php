@@ -35,8 +35,7 @@ Class Authcontroller extends Controller
             }
         }
     }
-      /**Here in this method we are initializing the values for login page*/
-     
+    /**Here in this method we are initializing the values for login page*/ 
     public function login_validation()
     {
         

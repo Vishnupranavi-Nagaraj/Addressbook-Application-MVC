@@ -7,7 +7,7 @@ Class App
     public function __construct()
 	{
     	$url=$this->splitURL();
-		if(file_exists("../app/controllers/". strtolower($url[0]) .".php"))
+		if (file_exists("../app/controllers/". strtolower($url[0]) .".php"))
  		{
 			$this->controller = strtolower($url[0]);
  			unset($url[0]);
@@ -16,7 +16,7 @@ Class App
  		$this->controller = new $this->controller;
     	if(isset($url[1]))
  		{
- 			if(method_exists($this->controller, $url[1]))
+ 			if (method_exists($this->controller, $url[1]))
  			{
  				$this->method = $url[1];
  				unset($url[1]);

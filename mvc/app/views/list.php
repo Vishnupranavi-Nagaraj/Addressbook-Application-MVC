@@ -79,7 +79,6 @@ else{
           <th scope="row"><?php echo $row['id'] ?></th>
           <td><?php echo $row['name'] ?></td>
           <td><?php echo $row['address'] ?></td>
-          
           <td>
           <button type="submit" name = "selectupdate" class="btn btn-primary" value =<?php echo $row['id'] ?>> <a href="update_main/<?php echo $row['id'] ?>" class="text-light" >Update</a></button>
           <button class="btn btn-danger"><input type="checkbox" name="stud_delete_id[]" value=<?php echo $row['id'] ?>></button>

@@ -5,7 +5,7 @@ Class Controller
 
 	protected function view($view,$data= [])
 	{
-		if(file_exists("../app/views/". $view .".php"))
+		if (file_exists("../app/views/". $view .".php"))
  		{
  			include "../app/views/". $view .".php";
  		}else{
@@ -14,7 +14,7 @@ Class Controller
 	}
 	protected function model($model)
     {
-        if(file_exists("../app/models/". $model .".php"))
+        if (file_exists("../app/models/". $model .".php"))
         {
             include "../app/models/". $model .".php";
             return $model = new $model();
