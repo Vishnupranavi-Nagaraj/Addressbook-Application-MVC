@@ -25,6 +25,9 @@ $validate = new Addresscontroller();
     margin-right:35%;
     width: 100%;
     }
+    p{
+        color: red;
+    }
 </style>
 <body>
 <header class="header">
@@ -77,7 +80,7 @@ $validate = new Addresscontroller();
             <div class="form-group">
                 <label for="country">Country</label>
 
-                <select class="form-control" id="country-dropdown" name="country" required>
+                <select class="form-control" id="country-dropdown" name="country">
                     <option value="">Select Country</option>
                     <?php
 
@@ -94,7 +97,7 @@ $validate = new Addresscontroller();
 
             <div class="form-group">
                 <label for="state">State</label>
-                <select class="form-control" id="state-dropdown" name="state" required>
+                <select class="form-control" id="state-dropdown" name="state">
                     <option value="">Select State</option>
                 </select>
                 

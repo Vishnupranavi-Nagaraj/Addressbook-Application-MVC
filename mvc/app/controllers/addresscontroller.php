@@ -1,7 +1,9 @@
 <?php
 Class Addresscontroller extends Controller
 {
-//This add function renders model and a view for addlist page
+    /**
+     * Add function which can render the model and a view page
+     */
     public function add()
     {
        $this->Addressmodel=$this->model('Addressmodel');
@@ -14,6 +16,9 @@ Class Addresscontroller extends Controller
             $this->view('add',$country_data);
         }
     }
+    /**
+     * select_state function which get the values of country and then view according to the state id
+     */
     public function select_state()
     {
         $this->Addressmodel=$this->model('Addressmodel');
@@ -21,7 +26,9 @@ Class Addresscontroller extends Controller
         $this->view('add',$state_data);    
   
     }
-//This function renders model and a view for addresslist page
+    /**
+     * display function displays all the records in the addresstable connection between a model and a view page
+     */
     public function display()
     {
         $this->model('Addressmodel');
@@ -29,7 +36,9 @@ Class Addresscontroller extends Controller
         $list_value= $display_obj->display_db(ADDRESSTABLE);
         $this->view('list',$list_value);
     }
-//This function renders model and a view for updatelist page
+     /**
+     * update_main function renders the connection between model and a view page
+     */
     public function update_main($buttonid)
     {
         $this->Addressmodel = $this->model("Addressmodel");
@@ -45,7 +54,9 @@ Class Addresscontroller extends Controller
 	        $this->view("edit",[$update_data,$selected_cname,$country_name,$selected_state,$state_name]); 
         }   
     }
-//we are setting the values to the addlist page
+      /**
+     * add_to-database fetch the id from the view page and sents to the model
+     */
     public function add_to_database()
     {
         if(isset($_POST['savebutton'])) 
@@ -66,7 +77,9 @@ Class Addresscontroller extends Controller
             }
         }
     }
-//Setting the values for a delete button in addresslist page
+     /**
+     * delete fetch the id from the view page and sents to the model
+     */
     public function delete()
     {
         if (isset($_POST['stud_delete_multiple_btn']))
@@ -82,7 +95,9 @@ Class Addresscontroller extends Controller
             }
         }
     }
-//Setting the values to a updatelist page
+     /**
+     * update fetch the id from the view page and sents to the model
+     */
     public function update($id)
     {
         if (isset($_POST['updatebutton']))
@@ -183,6 +198,42 @@ Class Addresscontroller extends Controller
             }
         }
     }
+    // function pageNo()
+    // {
+    //     $pageObj = new Addressmodel();
+    //     $sql = $pageObj->page();
+    //     $row = mysqli_fetch_array($sql);
+    //     $total_records = $row[0];
+    //     $page_per_record = 4;
+    //     $total_pages = ceil($total_records/$page_per_record);
+    //     $_SESSION['totalpage'] = $total_pages;
+    //     $pageLink = "";
+    //     $page = $_SESSION['pages'];
+
+    //     if($page>1)
+    //     {
+    //         echo "<a href = 'employee?page=".($page - 1)."'>Prev</a>";
+    //     }
+
+
+    //     for($i = 1;$i <= $total_pages; $i++)
+    //     {
+    //         if($i == $page)
+    //         {
+    //             $pageLink = "<a class = 'active' href = 'employee?page=".$i."'>".$i."</a>";
+    //         }
+    //         else
+    //         {
+    //             $pageLink = "<a href = 'employee?page=".$i."'>".$i."</a>";
+    //         }
+    //     }
+    //     echo $pageLink;
+
+    //     if($page < $total_pages)
+    //     {
+    //         echo "<a href = 'employee?page=".($page + 1)."'>Next</a>";
+    //     }
+    // }
 
 }
 ?>

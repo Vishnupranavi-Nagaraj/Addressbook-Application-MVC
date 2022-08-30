@@ -1,51 +1,44 @@
 <?php
 class Logger
 {
-    // error message to be logged
+     /**
+     * LogError for which the the error will be printed
+     *
+     * @param  $error
+     * $error param passed inside as an arugument
+     */
     public function logError($error)
     {
-        $error_message = "This is an error message!";
-        $log_file = "/my-errors.log";
+        
+        $error_message = "This is an error message!".$error;
+        $path="../app/my-errors.log";
         ini_set("log_errors", TRUE); 
-        ini_set('error_log', $log_file);
+        ini_set('error_log', $path);
         error_log($error_message);
     }
     /**
-   * @param string String identifier of the value to debug.
-   * @param mixed  Supported data types as value parameters are:
-   *               string, numeric and array.
-   */
+     * Logquery for which the the query will be printed
+     * @return Response
+     */
     public function logquery()
     {
-        //redirect("hello");
-        $log_file = "http://localhost/mvc/public/app/my-errors.log";
-        //redirect($log_file);
-        $path=$log_file;
-        //redirect($path);
-        if(!file_exists($path)){
-            $handle=fopen($path,'This is query mssg');
-            redirect($handle);
-            chmod($path, 777);
-        }else{
-            echo "Can't open the file";
-        }
-        $error_message = "This is query message!";
-        error_log($error_message, 3,$path);
-        // ini_set("log_errors", TRUE); 
-        // ini_set('error_log', $log_file);
-        //error_log($error_message);
-        //fopen('Addressmodel','r');
+        $log_file = "my-errors.log";
+        $path="../app/my-errors.log";
         
+        if(!file_exists($path)){
+            $handle=fopen($path,'w+');
+            fwrite($handle,"This is query");
+            chmod($path, 777);
+            fclose($handle);
+            //redirect("hello");
+           
+        }else{
+           $error_message = "This is Query Message!";
+           ini_set("log_errors", TRUE); 
+           ini_set('error_log', $path);
+           error_log($error_message);
+            //redirect("in else");
+        }
     }
     }
-    // $data=new Logger();
-    // $data->logquery();
-
-   //     $path = BASEURL.$log_file;
-   // if file not exists??
-   //      $handle = fopen($path, 'w+') or          die("Unable to open file!");
-   //        chmod($path, 0777);
-   // }
-   // $message = "$query."\r\n"; 
-   // error_log($message, 3, $path);
 ?>

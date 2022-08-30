@@ -41,45 +41,55 @@ function validateForm(){
   {
       setError(namevalue,'Name cannnot be blank');
   }
+  else if(namevalue.value.trim().length<4||namevalue.value.trim().length>30)
+  {
+      setError(namevalue,'Name should be greater than 4 letters');
+   }
   else{
-      setSuccess(namevalue,"valid Name");
+      setSuccess(namevalue);
   }
   if(addressvalue.value.trim()=='')
   {
       setError(addressvalue,'Address cannnot be blank');
   }
+  else if(addressvalue.value.trim().length<20||addressvalue.value.trim().length>190)
+  {
+      setError(addressvalue,'Please provide your complete address');
+   }
   else{
-      setSuccess(addressvalue,"valid Name");
+      setSuccess(addressvalue);
   }
   if(agevalue.value.trim()=='')
   {
       setError(agevalue,'Age cannnot be blank');
   }
+  else if(isNaN(agevalue.value)){
+    setError(agevalue,'Should be Only numbers');
+  }
+  else if(agevalue.value<1 || agevalue.value>100){
+        setError(agevalue,'Age cannnot be blank');
+  }
   else{
-      setSuccess(agevalue,"valid Name");
+      setSuccess(agevalue);
   }
   if(cityvalue.value.trim()=='')
   {
       setError(cityvalue,'City cannnot be blank');
   }
+  else if(cityvalue.value.trim().length<5||cityvalue.value.trim().length>30)
+  {
+      setError(cityvalue,'Please provide proper city name');
+   }
   else{
-      setSuccess(cityvalue,"valid Name");
+      setSuccess(cityvalue);
   }
-  if(countryvalue.selectedIndex == 0)
+  if(countryvalue.value == 0)
   {
       setError(countryvalue,'Country cannnot be blank');
   }
   else{
-      setSuccess(countryvalue,);
-  }
-  if(statevalue.selectedIndex == 0)
-  {
-      setError(statevalue,'State cannnot be blank');
-  }
-  else{
-      setSuccess(statevalue,);
-  }
-  
+    setSuccess(countryvalue);
+}
 }
 function setError(element,errorMessage)
 {
@@ -103,3 +113,5 @@ function setSuccess(element,successMessage)
   const message = parent.querySelector('p');
   message.textContent=successMessage;
 }
+
+  

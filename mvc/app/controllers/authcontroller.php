@@ -5,19 +5,30 @@
 Class Authcontroller extends Controller
 {
 
-    /**this is a main controller which renders default page of the website*/
+    // public function __construct()
+    // {
+    //     parent::__construct();
+
+    // }
+    /**
+     *this is a main controller which renders default page of the website
+     */
     public function main()
     {
         $this->model('Authmodel');
         $this->view("Register");  
     }
-    /**This login method renders the realtion between the Authmodel and login*/
+    /**
+     * This login method renders the realtion between the Authmodel and login
+     * */
     public function login()
     {
         $this->model('Authmodel');
         $this->view("login"); 
     }
-    /**Here in this method we are initializing the values for register page*/
+    /**
+     * Here in this method we are initializing the values for register page
+     **/
 	public function register()
     {
         if (isset($_POST['registerbutton']))
@@ -35,7 +46,9 @@ Class Authcontroller extends Controller
             }
         }
     }
-    /**Here in this method we are initializing the values for login page*/ 
+    /**
+     * Here in this method we are initializing the values for login page
+     **/ 
     public function login_validation()
     {
         
