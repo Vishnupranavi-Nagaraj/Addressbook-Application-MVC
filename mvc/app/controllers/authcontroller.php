@@ -20,7 +20,7 @@ Class Authcontroller extends Controller
     }
     /**
      * This login method renders the realtion between the Authmodel and login
-     * */
+     */
     public function login()
     {
         $this->model('Authmodel');
@@ -39,10 +39,13 @@ Class Authcontroller extends Controller
             $insert=$reg->register($email,$password,$_POST['registerbutton']);
             if ($insert)
             {
-            redirect("Please login!",'authcontroller/login');
+              //redirect("Please login!",'authcontroller/login');
+              $_SESSION['status']="Registered successfully";
+              redirect($_SESSION['status'], BASEURL."authcontroller/login");
             }
             else{
-            redirect("Invalid details",'');
+                $_SESSION['status']="Registered unsuccessfull";
+                redirect($_SESSION['status'], BASEURL."");
             }
         }
     }
@@ -61,15 +64,19 @@ Class Authcontroller extends Controller
             if ($read==1)
             {
                 $_SESSION['email'] = $email;
-                redirect("Welcome".$_SESSION['email'] , BASEURL."addresscontroller/display");
+                $username = substr($email, 0, strpos($email, '@'));
+                redirect("Welcome  ".$username, BASEURL."addresscontroller/display");
             }
             else
             {
-                redirect("Invalid details!",'');
+                redirect("Enter valid details ");
             }
 
         }
     }
+    /**
+     * This function used for the validation of email in the view page
+     */
     public function emailValidate()
     {
         if (isset($_POST['submit']))
@@ -81,6 +88,9 @@ Class Authcontroller extends Controller
             }
          }
     }
+    /**
+     * This function used for the validation of password in the view page
+     */
     public function passwordValidate()
     {
         if (isset($_POST['sub_btn']))

@@ -11,8 +11,9 @@ $validate = new Authcontroller();
     </head>
   <body>
     <!-- header -->
-   <!-- <?php echo BASEURL;?>Addresscontroller/display" -->
     <form id="create-account-form" method="POST" action=''>
+     
+        </style>
        <div class="title">
          <h2>Signin</h2>
        </div>
@@ -20,7 +21,7 @@ $validate = new Authcontroller();
         <!-- email -->
         <div class="input-group">
            <label for="email">Email</label>
-           <input type="email" name="email" value="" id="email" placeholder="email">
+           <input type="email" name="email" value="" id="email" placeholder="Email">
            <i class="fas fa-check-circle"></i>
            <i class="fas fa-exclamation-circle"></i>
            <p>Error Message</p>
@@ -40,7 +41,7 @@ $validate = new Authcontroller();
        
       <button type="submit" name="loginbutton" class="btn" onclick="validateForm()">Login</button>
       <p style="text-align: centre;">
-        <a href="index">New user?</a>
+        <a href="http://localhost/mvc/public/">New user?</a>
     </p>
     
       </div>

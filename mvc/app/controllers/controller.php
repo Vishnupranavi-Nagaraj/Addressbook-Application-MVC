@@ -2,6 +2,9 @@
 
 Class Controller
 {
+	/**
+     * View function can help to check the file exists or not
+     */
 
 	protected function view($view,$data= [])
 	{
@@ -12,6 +15,9 @@ Class Controller
  			include "../app/views/404.php";
  		}
 	}
+	/**
+     * model function can help to check the file exists or not
+     */
 	protected function model($model)
     {
         if (file_exists("../app/models/". $model .".php"))

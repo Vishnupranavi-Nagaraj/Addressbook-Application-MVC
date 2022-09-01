@@ -10,7 +10,7 @@ form.addEventListener('submit',(event)=>{
     validateForm();
     if(isFormValid()==true){
       form.submit();
-      //  // ..//
+    
     }else{
        event.preventDefault();
     }
@@ -45,7 +45,7 @@ function validateForm() {
     setError(passwordInput,'Password cannot be Empty');
    }
    else if(passwordInput.value.trim().length<8||passwordInput.value.trim().length>20){
-    setError(passwordInput,'Please enter a strong password');
+    setError(passwordInput,'Password should be greater than characters');
    }
    else{
      setSuccess(passwordInput);
@@ -53,7 +53,7 @@ function validateForm() {
 
    //confirm password
    if(confirmPasswordInput.value.trim()==''){
-    setError(confirmPasswordInput,'Password Cannot be Empty');
+    setError(confirmPasswordInput,'Confirmpassword Cannot be Empty');
    }
    else if(confirmPasswordInput.value!==passwordInput.value){
      setError(confirmPasswordInput,'Passwords Does Not Match');

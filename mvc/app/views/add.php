@@ -1,5 +1,12 @@
 <?php
 $validate = new Addresscontroller();
+
+if(isset($_SESSION['email']) == null)
+{
+    redirect("Please login to continue to view ","http://localhost/mvc/public/Authcontroller/login");
+    echo "not work";
+    
+}
 ?>
 <!Doctype html>
 <html lang="en">
@@ -13,6 +20,7 @@ $validate = new Addresscontroller();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Addressadd</title>
+    
 </head>
 <style>
     .form-control
@@ -32,8 +40,6 @@ $validate = new Addresscontroller();
 <body>
 <header class="header">
     <div class="container">
-
-
   <strong><h2>ADD USER DETAILS</h2></strong>
   
   <style>
@@ -50,29 +56,29 @@ $validate = new Addresscontroller();
 
     <div class="container my-5">
 
-        <form id="add" method="POST" action="">
+        <form id="add" method="POST" onsubmit="validateForm()">
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" placeholder="Enter name" name="name" id="name" onblur = "validateForm()">
+                <input type="text" class="form-control" placeholder="Enter name" name="name" id="name">
                 <p></p>
                 <span><?php $validate->nameValidate();?></span>
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="textarea" class="form-control" placeholder="Enter address" name="address" id="address" onblur = "validateForm()">
+                <input type="textarea" class="form-control" placeholder="Enter address" name="address" id="address">
                 <p></p>
                 <span><?php $validate->addressValidate();?></span>
             </div>
             <div class="form-group">
                 <label>Age</label>
-                <input type="text" class="form-control" placeholder="Enter age" name="age" id="age" onblur = "validateForm()">
+                <input type="text" class="form-control" placeholder="Enter age" name="age" id="age">
                 <p></p>
                 <span><?php $validate->ageValidate();?></span>
                 
             </div>
             <div class="form-group">
                 <label>City</label>
-                <input type="text" class="form-control" placeholder="Enter city" name="city" id="city" onblur = "validateForm()">
+                <input type="text" class="form-control" placeholder="Enter city" name="city" id="city">
                 <p></p>
                 <span><?php $validate->cityValidate();?></span>
                 
@@ -86,13 +92,13 @@ $validate = new Addresscontroller();
 
                     while ($row = mysqli_fetch_array($data)) {
                     ?>
-                        <option value="<?php echo $row['id']; ?>"><?php echo $row["name"]; ?></option>
+                        <option value="<?php echo $row['id']; ?>"><?php echo $row["cname"]; ?></option>
                     <?php
                     }
                     ?>
                 </select>
-                <p></p>
-                <span><?php $validate->countryValidate();?></span>
+                <p>
+                <span><?php $validate->countryValidate();?></span></p>
             </div>
 
             <div class="form-group">
@@ -129,8 +135,8 @@ $validate = new Addresscontroller();
                 });
             </script>
             
-            <button type="submit" class="btn btn-primary" name="savebutton" id = "submit-button" onclick="validateForm()">Submit</button>
-            <button type="submit" class="btn btn-primary" name="cancel" ><a href ="display" class = "text-light">Cancel</button>
+            <button type="submit" class="btn btn-primary" name="savebutton" id = "submit-button">Submit</button>
+            <button type="submit" class="btn btn-danger" name="cancel" ><a href ="display" class = "text-light">Cancel</button>
             <?php
             $info = new Addresscontroller();
             $info->add_to_database();

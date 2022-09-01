@@ -1,11 +1,8 @@
 <?php
-//session_start();
 
 if(isset($_SESSION['email']) == null)
 {
-    redirect("Please login to continue to view ","http://localhost/mvc/public/Authcontroller/login");
-    echo "not work";
-    
+    redirect("Please login to continue to view ",BASEURL."/Authcontroller/login");
 }
 else{
 ?>
@@ -22,6 +19,7 @@ else{
 
 </head>
 <body>
+
   <header class="header">
     <div class="container">
     <div class="image">
@@ -29,15 +27,17 @@ else{
 		</div>
     <div class="email">
 		<?php
-				echo $_SESSION['email'];
+				 echo "Welcome ".substr($_SESSION['email'], 0, strpos($_SESSION['email'], '@'));
 		?> 
 		</div>
   
  
   <h2 style="text-align:center">
   Welcome to Address Book Application
+  <div class="button">
   <button class="btn btn-warning my-2" style=float:right>
-  <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light" > Logout</a>
+  <a href="http://localhost/mvc/public/authcontroller/login" class="text-light" > Logout</a>
+  </div>
   
  
     </button>
@@ -70,11 +70,24 @@ else{
       <th scope="col">Name</th>
       <th scope="col">Address</th>
       <th scope="col">Actions</th>
-      <button type="submit" name="stud_delete_multiple_btn" class="btn btn-danger" onclick="return confirm('Are u sure')">Delete</button>
+      <button type="submit" name="stud_delete_multiple_btn" disabled = "True" id="del" class="btn btn-danger" onclick="return confirm('Are you sure?')"" >Delete</button>
     </tr>
     
   </thead>
   <tbody>
+  <script>
+      function enable(){
+      var check=document.getElementById('check');
+      var del=document.getElementById('del');
+      if(check.checked){
+        del.removeAttribute("disabled");
+      }
+      else{
+        del.disabled = "True"
+      }
+      }
+      
+      </script>
   
   <?php  
   $delete_obj=new Addresscontroller();
@@ -87,11 +100,11 @@ else{
           <tr>
           <th scope="row"><?php echo $row['id'] ?></th>
           <td><?php echo $row['name'] ?></td>
-          <td><?php echo $row['address'] ?></td>
+          <td><?php echo $row['address'] ?>,<?php echo $row['cname'] ?>,<?php echo $row['city'] ?>,<?php echo $row['sname']?></td>
           
           <td>
           <button type="submit" name = "selectupdate" class="btn btn-primary" value =<?php echo $row['id'] ?>> <a href="update_main/<?php echo $row['id'] ?>" class="text-light" >Update</a></button>
-          <button class="btn btn-danger"><input type="checkbox" name="stud_delete_id[]" value=<?php echo $row['id'] ?>></button>
+          <button class="btn btn-danger"><input type="checkbox" id="check" name="stud_delete_id[]" onclick = "enable()" value=<?php echo $row['id'] ?>></button>
           </td>
           </tr>
 <?php 
@@ -106,6 +119,7 @@ else{
     </div>
     
 </body>
+
 </html>
 <?php 
  } 

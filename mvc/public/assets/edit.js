@@ -1,27 +1,22 @@
-const form = document.querySelector('#add');
+const form = document.querySelector('#edit');
 const namevalue = document.querySelector('#name');
-console.log(form)
-console.log(namevalue)
 const addressvalue = document.querySelector('#address');
 const agevalue = document.querySelector('#age');
 const cityvalue = document.querySelector('#city');
 const countryvalue = document.querySelector('#country-dropdown');
 const statevalue = document.querySelector('#state-dropdown');
-console.log(statevalue)
 
-
-form.addEventListener('submit',(event)=>{
-  validateForm();
-  if(isFormValid()==true)
-  {
-      form.submit();
-  }
-  else
-  {
-      event.preventDefault();
-      return false;
-  }
-});
+edit.addEventListener('submit',(event)=>{
+    validateForm();
+    if(isFormValid()==true)
+    {
+        form.submit();
+    }else {
+        event.preventDefault();
+        return false;
+    }
+  });
+  
 
 function isFormValid()
 {
@@ -37,29 +32,29 @@ function isFormValid()
 }
 function validateForm(){
 
-  if(namevalue.value.trim()=='')
+  if(namevalue=='')
   {
       setError(namevalue,'Name cannnot be blank');
   }
   else if(namevalue.value.trim().length<4||namevalue.value.trim().length>30)
   {
       setError(namevalue,'Name should be greater than 4 letters');
-   }
+  }
   else{
       setSuccess(namevalue);
   }
-  if(addressvalue.value.trim()=='')
+  if(addressvalue.value=='')
   {
       setError(addressvalue,'Address cannnot be blank');
   }
-  else if(addressvalue.value.trim().length<20||addressvalue.value.trim().length>190)
+  else if(addressvalue.value.length<15||addressvalue.value.length>190)
   {
       setError(addressvalue,'Please provide your complete address');
    }
   else{
       setSuccess(addressvalue);
   }
-  if(agevalue.value.trim()=='')
+  if(agevalue.value=='')
   {
       setError(agevalue,'Age cannnot be blank');
   }
@@ -89,7 +84,7 @@ function validateForm(){
   }
   else{
     setSuccess(countryvalue);
-}
+    }
 }
 function setError(element,errorMessage)
 {
@@ -113,5 +108,4 @@ function setSuccess(element,successMessage)
   const message = parent.querySelector('p');
   message.textContent=successMessage;
 }
-
-  
+//check for alignment

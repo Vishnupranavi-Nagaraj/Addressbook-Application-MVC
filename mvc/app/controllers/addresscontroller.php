@@ -36,7 +36,8 @@ Class Addresscontroller extends Controller
         $list_value= $display_obj->display_db(ADDRESSTABLE);
         $this->view('list',$list_value);
     }
-     /**
+    
+    /**
      * update_main function renders the connection between model and a view page
      */
     public function update_main($buttonid)
@@ -45,16 +46,17 @@ Class Addresscontroller extends Controller
         if (isset($_GET['country_id'])) {
             $state_data=$this->Addressmodel->state_db($_GET['country_id']);
             state_dropdown($state_data);
-    }else{
+        } else {
 	        $update_data = $this->Addressmodel->update($buttonid);
             $selected_cname = $this->Addressmodel->update_country($update_data['country_id']);
             $country_name = $this->Addressmodel->country_db();
-            $selected_state=$this->Addressmodel->update_state($update_data['state_id']);
+            $selected_state = $this->Addressmodel->update_state($update_data['state_id']);
             $state_name = $this->Addressmodel->state_db($update_data['country_id']);
 	        $this->view("edit",[$update_data,$selected_cname,$country_name,$selected_state,$state_name]); 
         }   
     }
-      /**
+    
+    /**
      * add_to-database fetch the id from the view page and sents to the model
      */
     public function add_to_database()
@@ -67,17 +69,21 @@ Class Addresscontroller extends Controller
             $age = $_POST['age'];
             $country = $_POST['country'];
             $state = $_POST['state'];
-            $add_obj=new Addressmodel($this->details);
+            $add_obj=new Addressmodel();
             $insert=$add_obj->add($name,$address,$city,$age,$country,$state,$_POST['savebutton']);
             if ($insert)
             { 
-               redirect("Values inserted Sucessfully",'http://localhost/mvc/public/Addresscontroller/display');
+            $_SESSION['status']="Values Inserted";
+              redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
+               
             }else{
-                redirect("Values are not inserted Sucessfully",'');
+            $_SESSION['status']="Values Not Inserted";
+              redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
             }
         }
     }
-     /**
+    
+    /**
      * delete fetch the id from the view page and sents to the model
      */
     public function delete()
@@ -89,14 +95,18 @@ Class Addresscontroller extends Controller
             $extract_id = implode(',' , $all_id);
             $delte=$val->deleterecord($extract_id,$_POST['stud_delete_multiple_btn']);
             if ($delte) {
-            redirect("Record Deleted sucessfully",'');
+                $_SESSION['status']="Record Deleted sucessfully";
+                redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
+            
             }else{
-                echo "not work";
+                $_SESSION['status']="Failed to delete";
+                redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
             }
         }
     }
      /**
      * update fetch the id from the view page and sents to the model
+     * @param $id is used to fetch the value
      */
     public function update($id)
     {
@@ -112,13 +122,18 @@ Class Addresscontroller extends Controller
             $updateval=$val->updaterecord($name,$address,$city,$age,$country,$state,$id,$_POST['updatebutton']);
             if ($updateval)
             {
-                redirect("Updated","http://localhost/mvc/public/Addresscontroller/display");
+                $_SESSION['status']="Record Updated sucessfully";
+                redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
+            
             }else{
-                echo "not work";
+                $_SESSION['status']="Record Not Updated";
+                redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
             }
         }
     }
-//fetch values from country
+     /**
+     * This function can be used to check for the Country table
+     */
     public function country()
     {
         $valassign=new Addressmodel();
@@ -128,7 +143,9 @@ Class Addresscontroller extends Controller
             echo "Fetched successfully";
         }
     }
-//fetch values from state
+     /**
+     * This function can be used to check for the State table
+     */
     public function state()
     {
         if ($_POST["country_id"])
@@ -143,6 +160,9 @@ Class Addresscontroller extends Controller
         else {
         }
     }
+     /**
+     * This function used for the validation of name in the view page
+     */
     public function nameValidate()
     {
         if (isset($_POST['savebutton']))
@@ -154,6 +174,9 @@ Class Addresscontroller extends Controller
             }
         }
     }
+    /**
+     * This function used for the validation of address in the view page
+     */
     public function addressValidate()
     {
         if (isset($_POST['savebutton']))
@@ -165,10 +188,12 @@ Class Addresscontroller extends Controller
             }
         }
     }
+    /**
+     * This function used for the validation of city in the view page
+     */
     public function cityValidate()
     {
-        if (isset($_POST['savebutton']))
-        {
+        if (isset($_POST['savebutton'])){
             $city = $_POST['city'];
             if ($city == "")
             {
@@ -176,17 +201,22 @@ Class Addresscontroller extends Controller
             }
         }
     }
-    public function ageValidate()
-    {
+    /**
+     * This function used for the validation of age in the view page
+     */
+    public function ageValidate(){
         if (isset($_POST['savebutton']))
         {
             $age = $_POST['address'];
             if ($age == "")
             {
-                echo $error_age = "<span class = 'error'>Please enter your address</span>"; 
+                echo $error_age = "<span class = 'error'>Please enter your age</span>"; 
             }
         }
     }
+    /**
+     * This function used for the validation of country in the view page
+     */
     public function countryValidate()
     {
         if (isset($_POST['savebutton']))
@@ -198,42 +228,5 @@ Class Addresscontroller extends Controller
             }
         }
     }
-    // function pageNo()
-    // {
-    //     $pageObj = new Addressmodel();
-    //     $sql = $pageObj->page();
-    //     $row = mysqli_fetch_array($sql);
-    //     $total_records = $row[0];
-    //     $page_per_record = 4;
-    //     $total_pages = ceil($total_records/$page_per_record);
-    //     $_SESSION['totalpage'] = $total_pages;
-    //     $pageLink = "";
-    //     $page = $_SESSION['pages'];
-
-    //     if($page>1)
-    //     {
-    //         echo "<a href = 'employee?page=".($page - 1)."'>Prev</a>";
-    //     }
-
-
-    //     for($i = 1;$i <= $total_pages; $i++)
-    //     {
-    //         if($i == $page)
-    //         {
-    //             $pageLink = "<a class = 'active' href = 'employee?page=".$i."'>".$i."</a>";
-    //         }
-    //         else
-    //         {
-    //             $pageLink = "<a href = 'employee?page=".$i."'>".$i."</a>";
-    //         }
-    //     }
-    //     echo $pageLink;
-
-    //     if($page < $total_pages)
-    //     {
-    //         echo "<a href = 'employee?page=".($page + 1)."'>Next</a>";
-    //     }
-    // }
-
 }
 ?>

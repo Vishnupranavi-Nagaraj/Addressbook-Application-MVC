@@ -1,16 +1,12 @@
 const form = document.querySelector('#add');
 const namevalue = document.querySelector('#name');
-console.log(form)
-console.log(namevalue)
 const addressvalue = document.querySelector('#address');
 const agevalue = document.querySelector('#age');
 const cityvalue = document.querySelector('#city');
 const countryvalue = document.querySelector('#country-dropdown');
 const statevalue = document.querySelector('#state-dropdown');
-console.log(statevalue)
 
-
-form.addEventListener('submit',(event)=>{
+add.addEventListener('submit',(event)=>{
   validateForm();
   if(isFormValid()==true)
   {
@@ -37,22 +33,22 @@ function isFormValid()
 }
 function validateForm(){
 
-  if(namevalue.value.trim()=='')
+  if(namevalue.value=='')
   {
       setError(namevalue,'Name cannnot be blank');
   }
-  else if(namevalue.value.trim().length<4||namevalue.value.trim().length>30)
+  else if(namevalue.value.length<4||namevalue.value.length>30)
   {
       setError(namevalue,'Name should be greater than 4 letters');
-   }
+  }
   else{
       setSuccess(namevalue);
   }
-  if(addressvalue.value.trim()=='')
+  if(addressvalue.value=='')
   {
       setError(addressvalue,'Address cannnot be blank');
   }
-  else if(addressvalue.value.trim().length<20||addressvalue.value.trim().length>190)
+  else if(addressvalue.value.length<15||addressvalue.value.length>190)
   {
       setError(addressvalue,'Please provide your complete address');
    }
@@ -83,7 +79,7 @@ function validateForm(){
   else{
       setSuccess(cityvalue);
   }
-  if(countryvalue.value == 0)
+  if(countryvalue.value.selectedIndex==0)
   {
       setError(countryvalue,'Country cannnot be blank');
   }
@@ -113,5 +109,5 @@ function setSuccess(element,successMessage)
   const message = parent.querySelector('p');
   message.textContent=successMessage;
 }
-
+//check for alignment
   

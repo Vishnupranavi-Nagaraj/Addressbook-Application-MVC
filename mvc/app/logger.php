@@ -20,20 +20,20 @@ class Logger
      * Logquery for which the the query will be printed
      * @return Response
      */
-    public function logquery()
+    public function logquery($query)
     {
         $log_file = "my-errors.log";
         $path="../app/my-errors.log";
         
         if(!file_exists($path)){
             $handle=fopen($path,'w+');
-            fwrite($handle,"This is query");
+            fwrite($handle,$query);
             chmod($path, 777);
             fclose($handle);
             //redirect("hello");
            
         }else{
-           $error_message = "This is Query Message!";
+           $error_message = $query;
            ini_set("log_errors", TRUE); 
            ini_set('error_log', $path);
            error_log($error_message);

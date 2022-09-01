@@ -4,6 +4,9 @@ Class App
     private $controller="Authcontroller";
     private $method="main";
     private $params=[];
+	/**
+     * This function can help to check and send this main controller
+     */
     public function __construct()
 	{
     	$url=$this->splitURL();
@@ -25,6 +28,9 @@ Class App
 		$this->params = array_values($url);
 		call_user_func_array([$this->controller,$this->method], $this->params);
     }
+	/**
+     * This function can Split the url and send to construct
+     */
   	private function splitURL()
   	{
 		$url = isset($_GET['url']) ? $_GET['url'] : "Authcontroller";
