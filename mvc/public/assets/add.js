@@ -8,14 +8,12 @@ const statevalue = document.querySelector('#state-dropdown');
 
 add.addEventListener('submit',(event)=>{
   validateForm();
-  if(isFormValid()==true)
-  {
+  if(isFormValid()==true) {
       form.submit();
-  }
-  else
+  }else
   {
-      event.preventDefault();
-      return false;
+    event.preventDefault();
+    return false;
   }
 });
 
@@ -31,8 +29,8 @@ function isFormValid()
   })
   return result;
 }
-function validateForm(){
 
+function validateForm(){
   if(namevalue.value=='')
   {
       setError(namevalue,'Name cannnot be blank');
@@ -98,6 +96,7 @@ function setError(element,errorMessage)
   const message = parent.querySelector('p');
   message.textContent = errorMessage;
 }
+
 function setSuccess(element,successMessage)
 {
   const parent = element.parentElement;
@@ -109,5 +108,5 @@ function setSuccess(element,successMessage)
   const message = parent.querySelector('p');
   message.textContent=successMessage;
 }
-//check for alignment
+
   

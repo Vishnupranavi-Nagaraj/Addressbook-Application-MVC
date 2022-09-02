@@ -26,7 +26,6 @@ function isFormValid(){
 }
 // To validate Form fields
 function validateForm() {
-   
    //email
    if(emailInput.value.trim()==''){
     setError(emailInput,'Provide Email Address');

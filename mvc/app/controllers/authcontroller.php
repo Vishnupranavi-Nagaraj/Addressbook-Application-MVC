@@ -4,12 +4,6 @@
  */
 Class Authcontroller extends Controller
 {
-
-    // public function __construct()
-    // {
-    //     parent::__construct();
-
-    // }
     /**
      *this is a main controller which renders default page of the website
      */
@@ -39,7 +33,6 @@ Class Authcontroller extends Controller
             $insert=$reg->register($email,$password,$_POST['registerbutton']);
             if ($insert)
             {
-              //redirect("Please login!",'authcontroller/login');
               $_SESSION['status']="Registered successfully";
               redirect($_SESSION['status'], BASEURL."authcontroller/login");
             }

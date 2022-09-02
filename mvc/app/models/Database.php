@@ -1,14 +1,10 @@
 <?php
-abstract class Connection{
-    abstract function insert($table,$fields);
-    abstract function updatedetails($table,$fields,$id);
-    abstract function delete($table,$id);
-    abstract function displaydetails($table);
-
-}
-class Database extends Connection
+class Database
 {
     public $conn;
+    /**
+     * This function is used for database connections
+     */
     public function __construct()
     {
         $this->conn = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
@@ -90,7 +86,7 @@ class Database extends Connection
      */
     public function displaydetails($table){
         try{
-        $display=mysqli_query($this->conn,"SELECT address.id,address.name,address.address,address.city,country.cname,state.sname  from address JOIN country ON address.country_id= country.id join state on address.state_id = state.id");
+        $display=mysqli_query($this->conn,"SELECT address.id,address.name,address.address,address.city,country.cname,state.sname  from address JOIN country ON address.country_id= country.id join state on address.state_id = state.id ORDER BY address.id DESC");
         $display1="SELECT address.id,address.name,address.address,address.city,country.cname,state.sname  from address JOIN country ON address.country_id= country.id join state on address.state_id = state.id";
         $this->logger->logquery($display1);
         return $display;

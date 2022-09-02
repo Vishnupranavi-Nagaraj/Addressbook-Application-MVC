@@ -4,15 +4,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .alert1 {
-  position:center;
-  top: 10;
+  position: fixed;
+  top:30px;
   padding: 20px;
   background-color: #04AA6D;
   color: white;
-  width: 400px;
-  
+  width: 700px;  
 }
-
 .closebtn1 {
   margin-left: 15px;
   color: white;

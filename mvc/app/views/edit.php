@@ -14,38 +14,18 @@ $validate=new Addresscontroller();
     <title>Address edit</title>
 </head>
 <style>
-    .form-control
-     {
-        width: 400px;
-        height: 40px;
-    }
-    .container{
-    margin-left: 35%;
-    margin-right:35%;
-    width: 100%;
-    }
+    
 </style>
 <body>
 <header class="header">
     <div class="container my-1">
-
-
   <h2>EDIT USER DETAILS</h2>
-  
-  <style>
-    .header {background-color: blue;}
-    body {background-color: white;}
-    h2  {color: pink;}
-    h2  {font-style: sans-serif;}
-    h2  {height:60px;}
-   </style>
-
     </div>
   </header>
-<?php 
+    <?php 
         $update_obj=new Addresscontroller();
         $update_obj->update($data[0]['id']);    
-?>
+    ?>
     <div class="container my-5" >
         <form id="edit" method="POST" onsubmit="validateForm()">
             <div class="form-group">
@@ -75,7 +55,7 @@ $validate=new Addresscontroller();
             </div>
                 <div class="form-group">
                 <label for="country">Country</label>
-                <select class="form-control" id="country-dropdown" name="country">
+                <select class="form-control" id="country-dropdown" name="country" required>
 
                 <?php $row = mysqli_fetch_array($data[1]) ?>
                 <option value="<?php echo $row['id']; ?>"><?php echo $row["cname"]; ?></option>
@@ -103,7 +83,7 @@ $validate=new Addresscontroller();
                 
                 </div>
                 <button type="submit" class="btn btn-primary" name="updatebutton">Update</button>
-                <button type="submit" class="btn btn-danger" name="cancel" ><a href ="http://localhost/mvc/public/Addresscontroller/display" class = "text-light">Cancel</button>                <!-- <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a> -->
+                <button type="submit" class="btn btn-danger" name="cancel" ><a href = "<?php echo BASEURL?>addresscontroller/display" class = "text-light">Cancel</button>                <!-- <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a> -->
             </div>
             <script>
                 $(document).ready(function() 
@@ -139,7 +119,27 @@ $validate=new Addresscontroller();
 <div>
    
 </div>
-<script type="text/javascript" src="http://localhost/mvc/public/assets/edit.js"></script>
+<script type="text/javascript" src="<?php echo BASEURL?>assets/add.js"></script>
+<style>
+    .header {background-color: blue;}
+    body {background-color: white;}
+    h2  {color: pink;}
+    h2  {font-style: sans-serif;}
+    h2  {height:60px;}
+    .form-control
+     {
+        width: 400px;
+        height: 40px;
+    }
+    .container{
+    margin-left: 35%;
+    margin-right:35%;
+    width: 100%;
+    }
+    p{
+        color: red;
+    }
+   </style>
 </body>
 
 </html>

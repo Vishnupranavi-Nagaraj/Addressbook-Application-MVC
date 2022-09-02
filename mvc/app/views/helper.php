@@ -1,8 +1,5 @@
 <?php
-echo "vishnu";
-
 $conn=new mysqli('localhost','root','Weakpass$12','addressbook');
-
 $country_id = $_POST["country_id"];
 $result = mysqli_query($conn,"SELECT * FROM state where country_id = $country_id");
 ?>

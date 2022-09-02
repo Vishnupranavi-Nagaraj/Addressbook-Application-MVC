@@ -7,31 +7,30 @@ const countryvalue = document.querySelector('#country-dropdown');
 const statevalue = document.querySelector('#state-dropdown');
 
 edit.addEventListener('submit',(event)=>{
+    event.preventDefault();
+
     validateForm();
     if(isFormValid()==true)
     {
         form.submit();
     }else {
-        event.preventDefault();
         return false;
     }
-  });
-  
+});
 
 function isFormValid()
 {
   const inputContainers = form.querySelectorAll('.form-group')
   let result = true;
   inputContainers.forEach((container)=>{
-      if(container.classList.contains('error'))
-      {
+  if(container.classList.contains('error'))
+  {
           result = false;
-      }
+  }
   })
   return result;
 }
 function validateForm(){
-
   if(namevalue=='')
   {
       setError(namevalue,'Name cannnot be blank');
@@ -58,7 +57,8 @@ function validateForm(){
   {
       setError(agevalue,'Age cannnot be blank');
   }
-  else if(isNaN(agevalue.value)){
+  else if(isNaN(agevalue.value))
+  {
     setError(agevalue,'Should be Only numbers');
   }
   else if(agevalue.value<1 || agevalue.value>100){
@@ -108,4 +108,4 @@ function setSuccess(element,successMessage)
   const message = parent.querySelector('p');
   message.textContent=successMessage;
 }
-//check for alignment
+

@@ -6,7 +6,7 @@ $validate = new Authcontroller();
   <head>
     <meta charset="utf-8">
     <title>Signup page</title>
-    <link rel="stylesheet" href="http://localhost/mvc/public/assets/register.css">
+    <link rel="stylesheet" href= "<?php echo BASEURL?>assets/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
   </head>
@@ -50,11 +50,11 @@ $validate = new Authcontroller();
        
       <button type="submit" name="registerbutton" class="btn" onclick="validateform()">Register</button>
       </div>
-      <p><a href="http://localhost/mvc/public/authcontroller/login" >Already an user?</a></p>
+      <p><a href="<?php echo BASEURL?>authcontroller/login" >Already an user?</a></p>
     </form>
     
     
-    <script type="text/javascript" src="http://localhost/mvc/public/assets/register.js">
+    <script type="text/javascript" src="<?php echo BASEURL?>assets/register.js">
    
     </script>
         

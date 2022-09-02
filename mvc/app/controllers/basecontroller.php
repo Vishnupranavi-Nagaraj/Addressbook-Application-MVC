@@ -1,6 +1,4 @@
 <?php
-
-
 //         spl_autoload_register(function ($class) { 
 // //  require "../app/helper/config.php";
 // //  require "../app/models/Database.php";

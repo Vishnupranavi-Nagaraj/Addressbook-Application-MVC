@@ -3,9 +3,7 @@ $validate = new Addresscontroller();
 
 if(isset($_SESSION['email']) == null)
 {
-    redirect("Please login to continue to view ","http://localhost/mvc/public/Authcontroller/login");
-    echo "not work";
-    
+    redirect("Please login to continue to view ",BASEURL."/Authcontroller/login");      
 }
 ?>
 <!Doctype html>
@@ -22,35 +20,13 @@ if(isset($_SESSION['email']) == null)
     <title>Addressadd</title>
     
 </head>
-<style>
-    .form-control
-     {
-        width: 400px;
-        height: 40px;
-    }
-    .container{
-    margin-left: 35%;
-    margin-right:35%;
-    width: 100%;
-    }
-    p{
-        color: red;
-    }
-</style>
+
 <body>
 <header class="header">
     <div class="container">
   <strong><h2>ADD USER DETAILS</h2></strong>
   
-  <style>
-    .header {background-color: blue;}
-    body {background-color: white;}
-    h2  {color: pink;}
-    h2  {font-style: sans-serif;}
-    h2  {height:60px;}
-    /* h2 {text-align: center;} */
-   </style>
-
+  
     </div>
   </header>
 
@@ -86,8 +62,8 @@ if(isset($_SESSION['email']) == null)
             <div class="form-group">
                 <label for="country">Country</label>
 
-                <select class="form-control" id="country-dropdown" name="country">
-                    <option value="">Select Country</option>
+                <select class="form-control" id="country-dropdown" name="country" required>
+                    <option value="Select Country">Select Country</option>
                     <?php
 
                     while ($row = mysqli_fetch_array($data)) {
@@ -97,13 +73,13 @@ if(isset($_SESSION['email']) == null)
                     }
                     ?>
                 </select>
-                <p>
-                <span><?php $validate->countryValidate();?></span></p>
-            </div>
+                <span><?php $validate->countryValidate();?></span>
+                <p></p>
+                </div>
 
             <div class="form-group">
                 <label for="state">State</label>
-                <select class="form-control" id="state-dropdown" name="state">
+                <select class="form-control" id="state-dropdown" name="state" required>
                     <option value="">Select State</option>
                 </select>
                 
@@ -144,7 +120,29 @@ if(isset($_SESSION['email']) == null)
         </form>
 
     </div>
-    <script type="text/javascript" src="http://localhost/mvc/public/assets/add.js"></script>
+    <script type="text/javascript" src= "<?php echo BASEURL?>assets/add.js"></script>
+   
 </body>
+<style>
+    .header {background-color: blue;}
+    body {background-color: white;}
+    h2  {color: pink;}
+    h2  {font-style: sans-serif;}
+    h2  {height:60px;}
+    .form-control
+     {
+        width: 400px;
+        height: 40px;
+    }
+    .container{
+    margin-left: 35%;
+    margin-right:35%;
+    width: 100%;
+    }
+    p{
+        color: red;
+    }
+   
+   </style>
 
 </html>

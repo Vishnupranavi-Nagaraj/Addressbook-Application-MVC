@@ -11,7 +11,7 @@ Class Addresscontroller extends Controller
        {
             $state_data=$this->Addressmodel->state_db($_GET['country_id']);
             state_dropdown($state_data);
-        }else{
+       }else{
             $country_data=$this->Addressmodel->country_db();
             $this->view('add',$country_data);
         }
@@ -24,7 +24,6 @@ Class Addresscontroller extends Controller
         $this->Addressmodel=$this->model('Addressmodel');
         $state_data=$this->Addressmodel->state_db($_GET['country_id']);
         $this->view('add',$state_data);    
-  
     }
     /**
      * display function displays all the records in the addresstable connection between a model and a view page

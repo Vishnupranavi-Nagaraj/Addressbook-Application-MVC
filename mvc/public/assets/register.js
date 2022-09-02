@@ -3,8 +3,6 @@ var emailInput=document.getElementById('email');
 var passwordInput=document.getElementById('password');
 var confirmPasswordInput=document.getElementById('confirm-password');
 
-
-
 form.addEventListener('submit',(event)=>{
    
     validateForm();

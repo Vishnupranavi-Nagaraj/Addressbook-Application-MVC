@@ -6,7 +6,7 @@ $validate = new Authcontroller();
   <head>
     <meta charset="utf-8">
     <title>Signin</title>
-    <link rel="stylesheet" href="http://localhost/mvc/public/assets/login.css">
+    <link rel="stylesheet" href="<?php echo BASEURL?>assets/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
   <body>
@@ -41,7 +41,7 @@ $validate = new Authcontroller();
        
       <button type="submit" name="loginbutton" class="btn" onclick="validateForm()">Login</button>
       <p style="text-align: centre;">
-        <a href="http://localhost/mvc/public/">New user?</a>
+        <a href="<?php echo BASEURL?>">New user?</a>
     </p>
     
       </div>
@@ -52,7 +52,7 @@ $validate = new Authcontroller();
     $obj->login_validation();
      ?>
 
-    <script type="text/javascript" src="http://localhost/mvc/public/assets/login.js">
+    <script type="text/javascript" src="<?php echo BASEURL?>assets/login.js">
 
     </script>
     
