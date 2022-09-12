@@ -3,8 +3,8 @@ const namevalue = document.querySelector('#name');
 const addressvalue = document.querySelector('#address');
 const agevalue = document.querySelector('#age');
 const cityvalue = document.querySelector('#city');
-const countryvalue = document.querySelector('#country-dropdown');
-const statevalue = document.querySelector('#state-dropdown');
+const countryvalue = document.getElementById('country-dropdown');
+const statevalue = document.getElementById('state-dropdown');
 
 add.addEventListener('submit',(event)=>{
   validateForm();
@@ -72,18 +72,24 @@ function validateForm(){
   }
   else if(cityvalue.value.trim().length<5||cityvalue.value.trim().length>30)
   {
-      setError(cityvalue,'Please provide proper city name');
+      setError(cityvalue,'Please provide proper city');
    }
   else{
       setSuccess(cityvalue);
   }
-  if(countryvalue.value.selectedIndex==0)
+  if(countryvalue.selectedIndex==0)
   {
-      setError(countryvalue,'Country cannnot be blank');
-  }
-  else{
+    setError(countryvalue,'Please enter a country');
+  }else{
     setSuccess(countryvalue);
-}
+  }
+  if(statevalue.selectedIndex=="0")
+  {
+    setError(statevalue,'Please enter a state');
+  }else{
+    setSuccess(statevalue);
+  }
+  
 }
 function setError(element,errorMessage)
 {

@@ -2,18 +2,19 @@
 /**
  * Authcontroller contains add,list,display
  */
-Class Authcontroller extends Controller
+Class Authcontroller
 {
     /**
-     *this is a main controller which renders default page of the website
+     *this is a main method which renders gives a link between model and a view
      */
+    use Controller;
     public function main()
     {
         $this->model('Authmodel');
         $this->view("Register");  
     }
     /**
-     * This login method renders the realtion between the Authmodel and login
+     * This login method renders gives a link between model and a view
      */
     public function login()
     {
@@ -31,13 +32,13 @@ Class Authcontroller extends Controller
             $email    = $_POST['email'];
             $password = $_POST['password'];
             $insert=$reg->register($email,$password,$_POST['registerbutton']);
-            if ($insert)
+            if($insert)
             {
               $_SESSION['status']="Registered successfully";
               redirect($_SESSION['status'], BASEURL."authcontroller/login");
             }
             else{
-                $_SESSION['status']="Registered unsuccessfull";
+                $_SESSION['status']="Registered unsuccessfully";
                 redirect($_SESSION['status'], BASEURL."");
             }
         }
@@ -62,7 +63,7 @@ Class Authcontroller extends Controller
             }
             else
             {
-                redirect("Enter valid details ");
+                redirect("Seems,user or password not exists,Please signup");
             }
 
         }
@@ -88,12 +89,14 @@ Class Authcontroller extends Controller
     {
         if (isset($_POST['sub_btn']))
         {
-            $password = $_POST['rolePassword'];
+            $password = $_POST['Password'];
             if ($password == "")
             {
                 echo $error_password =  "<span class='error'>Please enter password</span>";
             }
       }
     }
+
+  
     }
 ?>

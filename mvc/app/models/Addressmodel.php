@@ -15,6 +15,7 @@ class Addressmodel extends Database
      * @return $insert_status will return the values to the controller
      */
   public function add($name, $address, $city, $age, $country, $state)
+   
   {
     $add_obj=new Database();
     $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country_id"=>$country,"state_id"=>$state);
@@ -116,4 +117,5 @@ class Addressmodel extends Database
     $con = mysqli_query($this->conn, "select*from {$const('STATETABLE')} where id = $sid");
     return $con;
   }
+  
 }

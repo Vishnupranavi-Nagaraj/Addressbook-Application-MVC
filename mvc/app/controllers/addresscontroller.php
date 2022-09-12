@@ -1,9 +1,10 @@
 <?php
-Class Addresscontroller extends Controller
+Class Addresscontroller
 {
     /**
      * Add function which can render the model and a view page
      */
+    use Controller;
     public function add()
     {
        $this->Addressmodel=$this->model('Addressmodel');
@@ -68,15 +69,16 @@ Class Addresscontroller extends Controller
             $age = $_POST['age'];
             $country = $_POST['country'];
             $state = $_POST['state'];
+            
             $add_obj=new Addressmodel();
             $insert=$add_obj->add($name,$address,$city,$age,$country,$state,$_POST['savebutton']);
             if ($insert)
             { 
-            $_SESSION['status']="Values Inserted";
+              $_SESSION['status']="Values Inserted";
               redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
                
             }else{
-            $_SESSION['status']="Values Not Inserted";
+              $_SESSION['status']="Values Not Inserted";
               redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
             }
         }
@@ -206,7 +208,7 @@ Class Addresscontroller extends Controller
     public function ageValidate(){
         if (isset($_POST['savebutton']))
         {
-            $age = $_POST['address'];
+            $age = $_POST['age'];
             if ($age == "")
             {
                 echo $error_age = "<span class = 'error'>Please enter your age</span>"; 
@@ -220,10 +222,21 @@ Class Addresscontroller extends Controller
     {
         if (isset($_POST['savebutton']))
         {
-            $country= $_POST['address'];
-            if ($country == "country")
+            $country= $_POST['country'];
+            if ($country == 0)
             {
-                echo $error_country = "<span class = 'error'>Please enter your address</span>"; 
+                echo $error_country = "<span class = 'error'>Please enter your Country</span>"; 
+            }
+        }
+    }
+    public function stateValidate()
+    {
+        if (isset($_POST['savebutton']))
+        {
+            $state= $_POST['state'];
+            if ($state == 0)
+            {
+                echo $error_country = "<span class = 'error'>Please enter your State</span>"; 
             }
         }
     }

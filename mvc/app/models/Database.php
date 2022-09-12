@@ -1,5 +1,11 @@
 <?php
-class Database
+abstract class Db{
+    abstract function insert($table,$fields);
+    abstract function updatedetails($table,$fields,$id);
+    abstract function delete($table,$id);
+    abstract function displaydetails($table);
+}
+class Database extends Db
 {
     public $conn;
     /**
@@ -29,9 +35,11 @@ class Database
         $key=implode(",",$k);
         $value=implode(",",$v);
         try{
-            $insert = mysqli_query($this->conn,"Insert into $table ($key) values($value)");
-            $insert1="Insert into $table ($key) values($value)";
-            $this->logger->logquery($insert1);
+            //$insert = mysqli_query($this->conn,"Insert into $table ($key) values($value)");
+            $insertquery="Insert into $table ($key) values($value)";
+            $insert=$this->conn->prepare($insertquery);
+            $insert->execute();
+            $this->logger->logquery($insertquery);
             if(!($insert=1)){
 
                 throw new Exception('Number is zero.');
@@ -55,8 +63,8 @@ class Database
         try{
         $query="UPDATE $table SET " .implode(', ', $columns);
         $update=mysqli_query($this->conn,"$query where id=$id");
-        $update1="$query where id=$id";
-        $this->logger->logquery($update1);
+        $updatequery="$query where id=$id";
+        $this->logger->logquery($updatequery);
         return $update;
         }
         catch(Exception $error){
@@ -72,8 +80,8 @@ class Database
     {
         try{
         $delete=mysqli_query($this->conn,"DELETE FROM $table WHERE id IN($id)");
-        $delete1="DELETE FROM $table WHERE id IN($id)";
-        $this->logger->logquery($delete1);
+        $deletequery="DELETE FROM $table WHERE id IN($id)";
+        $this->logger->logquery($deletequery);
         return $delete;
         }catch(Exception $error){
             $this->logger->logerror($error);
@@ -86,9 +94,9 @@ class Database
      */
     public function displaydetails($table){
         try{
-        $display=mysqli_query($this->conn,"SELECT address.id,address.name,address.address,address.city,country.cname,state.sname  from address JOIN country ON address.country_id= country.id join state on address.state_id = state.id ORDER BY address.id DESC");
-        $display1="SELECT address.id,address.name,address.address,address.city,country.cname,state.sname  from address JOIN country ON address.country_id= country.id join state on address.state_id = state.id";
-        $this->logger->logquery($display1);
+        $display=mysqli_query($this->conn,"SELECT $table.id,$table.name,$table.address,$table.city,country.cname,state.sname  from $table JOIN country ON $table.country_id= country.id join state on $table.state_id = state.id ORDER BY $table.id DESC");
+        $displayquery="SELECT address.id,address.name,address.address,address.city,country.cname,state.sname  from address JOIN country ON address.country_id= country.id join state on address.state_id = state.id";
+        $this->logger->logquery($displayquery);
         return $display;
         }
         catch(Exception $error){

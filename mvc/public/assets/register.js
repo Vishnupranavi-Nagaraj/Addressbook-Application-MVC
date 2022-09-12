@@ -43,7 +43,7 @@ function validateForm() {
     setError(passwordInput,'Password cannot be Empty');
    }
    else if(passwordInput.value.trim().length<8||passwordInput.value.trim().length>20){
-    setError(passwordInput,'Password should be greater than characters');
+    setError(passwordInput,'Password should be greater than 8 characters');
    }
    else{
      setSuccess(passwordInput);

@@ -50,7 +50,9 @@ $validate = new Authcontroller();
        
       <button type="submit" name="registerbutton" class="btn" onclick="validateform()">Register</button>
       </div>
+      <div>
       <p><a href="<?php echo BASEURL?>authcontroller/login" >Already an user?</a></p>
+      </div>
     </form>
     
     

@@ -9,25 +9,26 @@ $validate=new Addresscontroller();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?php echo BASEURL?>assets/add.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Address edit</title>
+  
 </head>
-<style>
-    
-</style>
 <body>
-<header class="header">
-    <div class="container my-1">
-  <h2>EDIT USER DETAILS</h2>
+<header>
+<div class="head">
+    <div class="text">
+    <h1>Edit User Details</h1>
     </div>
+</div>
   </header>
     <?php 
         $update_obj=new Addresscontroller();
         $update_obj->update($data[0]['id']);    
     ?>
     <div class="container my-5" >
-        <form id="edit" method="POST" onsubmit="validateForm()">
+        <form id="add" method="POST" onsubmit="validateForm()">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" id="name" value=<?php echo $data[0]['name'];?>  onblur="validateForm()">
@@ -36,7 +37,7 @@ $validate=new Addresscontroller();
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="textarea" class="form-control" placeholder="Enter address" name="address" id="address" value=<?php echo $data[0]['address'];?> onblur="validateForm()">
+                <input type="textarea" class="form-control" placeholder="Enter address" name="address" id="address" value=<?php echo $data[0]['address']; ?> onblur="validateForm()">
                 <span><?php $validate->addressValidate();?></span>
                 <p></p>
             </div>
@@ -82,8 +83,21 @@ $validate=new Addresscontroller();
                 </select>
                 
                 </div>
+                <div class="form-group">
+                  <label>Profile Photo</label>
+                  <br>
+                  <form action="" method="POST" enctype="multipart/form-data">
+                  <input type="file" name="image" />
+                  <p></p>
+            </div>
+              
                 <button type="submit" class="btn btn-primary" name="updatebutton">Update</button>
-                <button type="submit" class="btn btn-danger" name="cancel" ><a href = "<?php echo BASEURL?>addresscontroller/display" class = "text-light">Cancel</button>                <!-- <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a> -->
+                <button type="submit" class="btn btn-danger" id="btn" name="cancel" ><a href = "<?php echo BASEURL?>addresscontroller/display" class = "text-light">Cancel</button>                <!-- <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a> -->
+                <footer>
+                    <div class="foot">   
+                    <h4>Any Queries? Reach us @addresslocal.com </h4>
+            </div>    
+            </footer>
             </div>
             <script>
                 $(document).ready(function() 
@@ -120,26 +134,6 @@ $validate=new Addresscontroller();
    
 </div>
 <script type="text/javascript" src="<?php echo BASEURL?>assets/add.js"></script>
-<style>
-    .header {background-color: blue;}
-    body {background-color: white;}
-    h2  {color: pink;}
-    h2  {font-style: sans-serif;}
-    h2  {height:60px;}
-    .form-control
-     {
-        width: 400px;
-        height: 40px;
-    }
-    .container{
-    margin-left: 35%;
-    margin-right:35%;
-    width: 100%;
-    }
-    p{
-        color: red;
-    }
-   </style>
 </body>
 
 </html>

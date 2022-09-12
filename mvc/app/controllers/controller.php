@@ -1,6 +1,5 @@
 <?php 
-
-Class Controller
+trait Controller
 {
 	/**
      * View function can help to check the file exists or not
