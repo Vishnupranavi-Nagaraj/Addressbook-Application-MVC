@@ -33,25 +33,25 @@ if(isset($_SESSION['email']) == null)
         <form id="add" method="POST" class="form" onsubmit="validateForm()">
             <div class="form-group">
                
-                <label>Name</label>
+                <label>Name<sup>*</sup></label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" id="name">
                 <p></p>
                 <span><?php $validate->nameValidate();?></span>
             </div>
             <div class="form-group">
-                <label>Address</label>
+                <label>Address<sup>*</sup></label>
                 <input type="textarea" class="form-control" placeholder="Enter address" name="address" id="address">
                 <p></p>
                 <span><?php $validate->addressValidate();?></span>
             </div>
             <div class="form-group">
-                <label>Age</label>
+                <label>Age<sup>*</sup></label>
                 <input type="text" class="form-control" placeholder="Enter age" name="age" id="age">
                 <p></p>
                 <span><?php $validate->ageValidate();?></span>
             </div>
             <div class="form-group">
-                <label>City</label>
+                <label>City<sup>*</sup></label>
                 <input type="text" class="form-control" placeholder="Enter city" name="city" id="city">
                 <p></p>
                 <span><?php $validate->cityValidate();?></span>
@@ -59,7 +59,7 @@ if(isset($_SESSION['email']) == null)
            
            
             <div class="form-group">
-                <label for="country">Country</label>
+                <label for="country">Country<sup>*</sup></label>
 
                 <select class="form-control" id="country-dropdown" name="country">
                     <option value="Select Country">Select Country</option>
@@ -77,7 +77,7 @@ if(isset($_SESSION['email']) == null)
                 </div>
 
             <div class="form-group">
-                <label for="state">State</label>
+                <label for="state">State<sup>*</sup></label>
                 <select class="form-control" id="state-dropdown" name="state">
                     <option value="Select State">Select State</option>
                 </select>
@@ -110,10 +110,10 @@ if(isset($_SESSION['email']) == null)
                 });
             </script>
             <div class="form-group">
-                  <label>Profile Photo</label>
+                  <label>Profile Photo<sup>*</sup></label>
                   <br>
                   <form action="" method="POST" enctype="multipart/form-data">
-                  <input type="file" name="image" />
+                  <input type="file" name="image">
                   <p></p>
             </div>
             <button type="submit" class="btn btn-primary" name="savebutton" id = "submit-button">Submit</button>

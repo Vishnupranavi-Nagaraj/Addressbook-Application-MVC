@@ -41,7 +41,6 @@ class Database extends Db
             $insert->execute();
             $this->logger->logquery($insertquery);
             if(!($insert=1)){
-
                 throw new Exception('Number is zero.');
             }
             return $insert;

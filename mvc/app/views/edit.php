@@ -30,32 +30,32 @@ $validate=new Addresscontroller();
     <div class="container my-5" >
         <form id="add" method="POST" onsubmit="validateForm()">
             <div class="form-group">
-                <label>Name</label>
+                <label>Name<sup>*</sup></label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" id="name" value=<?php echo $data[0]['name'];?>  onblur="validateForm()">
                 <span><?php $validate->nameValidate();?></span>
                 <p></p>
             </div>
             <div class="form-group">
-                <label>Address</label>
+                <label>Address<sup>*</sup></label>
                 <input type="textarea" class="form-control" placeholder="Enter address" name="address" id="address" value=<?php echo $data[0]['address']; ?> onblur="validateForm()">
                 <span><?php $validate->addressValidate();?></span>
                 <p></p>
             </div>
             <div class="form-group">
-                <label>Age</label>
+                <label>Age<sup>*</sup></label>
                 <input type="text" class="form-control" placeholder="Enter age" name="age" id="age" value=<?php echo $data[0]['age'];?> onblur="validateForm()">
                 <span><?php $validate->ageValidate();?></span>
                 <p></p>
             </div>
             
             <div class="form-group">
-                <label>City</label>
+                <label>City<sup>*</sup></label>
                 <input type="text" class="form-control" placeholder="Enter city" name="city" id="city" value=<?php echo $data[0]['city'];?> onblur="validateForm()">
                 <span><?php $validate->cityValidate();?></span>
                 <p></p>
             </div>
                 <div class="form-group">
-                <label for="country">Country</label>
+                <label for="country">Country<sup>*</sup></label>
                 <select class="form-control" id="country-dropdown" name="country" required>
 
                 <?php $row = mysqli_fetch_array($data[1]) ?>
@@ -70,7 +70,7 @@ $validate=new Addresscontroller();
                 
             </div>
             <div class="form-group">
-                <label for="state">State</label>
+                <label for="state">State<sup>*</sup></label>
                 <select class="form-control" id="state-dropdown" name="state" required>
                 <?php $row = mysqli_fetch_array($data[3]) ?>
                 <option value="<?php echo $row['id']; ?>"><?php echo $row["sname"]; ?></option>
@@ -84,14 +84,14 @@ $validate=new Addresscontroller();
                 
                 </div>
                 <div class="form-group">
-                  <label>Profile Photo</label>
+                  <label>Profile Photo<sup>*</sup></label>
                   <br>
                   <form action="" method="POST" enctype="multipart/form-data">
                   <input type="file" name="image" />
                   <p></p>
             </div>
               
-                <button type="submit" class="btn btn-primary" name="updatebutton">Update</button>
+                <button type="submit" class="btn btn-primary" name="updatebutton" id="updatebtn">Update</button>
                 <button type="submit" class="btn btn-danger" id="btn" name="cancel" ><a href = "<?php echo BASEURL?>addresscontroller/display" class = "text-light">Cancel</button>                <!-- <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a> -->
                 <footer>
                     <div class="foot">   

@@ -5,6 +5,11 @@ Class Addresscontroller
      * Add function which can render the model and a view page
      */
     use Controller;
+    public function main()
+    {
+        $this->model('Addressmodel');
+        $this->view("404");
+    }
     public function add()
     {
        $this->Addressmodel=$this->model('Addressmodel');
@@ -71,7 +76,7 @@ Class Addresscontroller
             $state = $_POST['state'];
             
             $add_obj=new Addressmodel();
-            $insert=$add_obj->add($name,$address,$city,$age,$country,$state,$_POST['savebutton']);
+            $insert=$add_obj->add($name,$address,$city,$age,$country,$state);
             if ($insert)
             { 
               $_SESSION['status']="Values Inserted";

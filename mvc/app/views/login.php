@@ -41,6 +41,7 @@ $validate = new Authcontroller();
        
       <button type="submit" name="loginbutton" class="btn" onclick="validateForm()">Login</button>
       <p style="text-align: centre;">
+      <br>
         <a href="<?php echo BASEURL?>">New user?</a>
     </p>
     

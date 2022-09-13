@@ -3,16 +3,19 @@ html, body {
     max-height: 30%; 
     overflow: hidden;
 }
+
 .head{
-    background-color:rgb(40, 31, 31);
+    background-color:rgb(89, 71, 71);
     width: 100%;
     height: 100px;
     position: relative;
     display: flex;
 }
+
 p{
     color: red;
 }
+
 .text{
     position: relative;
     display: flex;
@@ -20,35 +23,58 @@ p{
     top: 40%;
     left: 40%;
 }
+
 .container my-5{
     display: flex;
     justify-content: center;
     overflow: auto;
     height: 100%;
 }
+
 #add{
+   position: relative;
+   top: -25px; 
+   width:400px;
+   padding: 20px;
    margin: auto;
-   height:auto;
+   height:650px;
    width: 50%;
    border: 2px dotted white;
    background-color:bisque;
    
 }
+
 .form-group{
-    height:65px;
+    height:67px;
 }
+
 .foot{
     position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
    height: 70px;
-   background-color:rgb(40, 31, 31);
+   background-color:rgb(89, 71, 71);
    color: white;
    text-align: center;
 }
+
 #btn{
-    right:-30px;
+    right:-180px;
     position: relative;
+}
+
+#submit-button{
+    right:-150px;
+    position: relative;
+}
+
+#updatebtn{
+    right:-150px;
+    position: relative;
+}
+
+sup{
+    color:red;
 }
 

@@ -1,28 +1,33 @@
 .image{
     text-align: right;
 }
+
 .image img{
     position: absolute;
     left: 1400px;
     top:30px;
 }
+
 .email{
     position:relative;
     left: 1380px;
     top:60px;
     bottom: 0; 
-    color:pink;
+    color:whitesmoke;
 }
+
 .button {
     position:relative;
     left: -30px;
     top:-30px;
 }
+
 .image img{
     float:right;
 }
+
 .table,th,td,tr{
-    border: 3px double rgb(40, 31, 31);
+    border: 3px double rgb(89, 71, 71);
     background-color:bisque;
 }
 

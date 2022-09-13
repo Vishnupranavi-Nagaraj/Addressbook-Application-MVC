@@ -31,7 +31,7 @@ else{
   <h2 style="text-align:center">
   Welcome to Address Book Application
   <div class="button">
-  <button class="btn btn-warning my-2" style=float:right>
+  <button class="btn btn-danger my-2" style=float:right>
   <a href="<?php echo BASEURL?>authcontroller/login" class="text-light" > Logout</a>
   </div>
     </button>
@@ -99,7 +99,7 @@ else{
 </body>
 <style>
     
-    .header {background-color:rgb(40, 31, 31);}
+    .header {background-color:rgb(89, 71, 71);}
     body {background-color: white;}
     h2   {color: pink;}
     h2   {font-style: normal;}
