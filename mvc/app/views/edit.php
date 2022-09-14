@@ -84,18 +84,17 @@ $validate=new Addresscontroller();
                 
                 </div>
                 <div class="form-group">
-                  <label>Profile Photo<sup>*</sup></label>
-                  <br>
-                  <form action="" method="POST" enctype="multipart/form-data">
-                  <input type="file" name="image" />
-                  <p></p>
-            </div>
+                    <label>Profile Photo<sup>*</sup></label>
+                    <br>
+                        <a href="<?php echo ($data[0]['file']); ?>"><?php echo ($data[0]['file']);?></a>
+                        <p></p>
+                </div>
               
                 <button type="submit" class="btn btn-primary" name="updatebutton" id="updatebtn">Update</button>
                 <button type="submit" class="btn btn-danger" id="btn" name="cancel" ><a href = "<?php echo BASEURL?>addresscontroller/display" class = "text-light">Cancel</button>                <!-- <a href="http://localhost/mvc/public/Authcontroller/login" class="text-light"> Logout</a> -->
                 <footer>
                     <div class="foot">   
-                    <h4>Any Queries? Reach us @addresslocal.com </h4>
+                    <!-- <h4>Any Queries? Reach us @addresslocal.com </h4> -->
             </div>    
             </footer>
             </div>

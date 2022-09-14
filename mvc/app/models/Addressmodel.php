@@ -14,12 +14,13 @@ class Addressmodel extends Database
      * @param $name,$address,$city,$age,$country,$state
      * @return $insert_status will return the values to the controller
      */
-  public function add($name, $address, $city, $age, $country, $state)
+  public function add($name, $address, $city, $age, $country, $state,$file)
    
   {
     $add_obj=new Database();
-    $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country_id"=>$country,"state_id"=>$state);
+    $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country_id"=>$country,"state_id"=>$state,"file"=>$file);
     $insert_status=$add_obj->insert(ADDRESSTABLE,$fields);
+    
     return $insert_status; 
   }
     /**
@@ -27,10 +28,10 @@ class Addressmodel extends Database
      * @param $name,$address,$city,$age,$country,$state,$id
      * @return $update_result will return the values to the controller
      */
-  public function updaterecord($name, $address, $city, $age, $country, $state, $id)
+  public function updaterecord($name, $address, $city, $age, $country, $state, $id,$file)
   {
       $add_obj=new Database();
-      $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country_id"=>$country,"state_id"=>$state,"id"=>"$id");
+      $fields=array("name"=>"$name","address"=>"$address","city"=>"$city","age"=>$age,"country_id"=>$country,"state_id"=>$state,"id"=>"$id","file"=>$file);
       $update_result=$add_obj->updatedetails(ADDRESSTABLE,$fields,$id);
       return $update_result;
   }

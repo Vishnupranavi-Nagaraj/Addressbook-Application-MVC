@@ -51,7 +51,13 @@ Class Addresscontroller
         if (isset($_GET['country_id'])) {
             $state_data=$this->Addressmodel->state_db($_GET['country_id']);
             state_dropdown($state_data);
-        } else {
+        } else if(!is_numeric($buttonid)){
+            $f_name = $buttonid;
+            
+            header("Content-Disposition:attachment;filename=$f_name");
+
+        }
+        else {
 	        $update_data = $this->Addressmodel->update($buttonid);
             $selected_cname = $this->Addressmodel->update_country($update_data['country_id']);
             $country_name = $this->Addressmodel->country_db();
@@ -66,6 +72,7 @@ Class Addresscontroller
      */
     public function add_to_database()
     {
+        
         if(isset($_POST['savebutton'])) 
         {
             $name = $_POST['name'];
@@ -74,9 +81,9 @@ Class Addresscontroller
             $age = $_POST['age'];
             $country = $_POST['country'];
             $state = $_POST['state'];
-            
+            $file=$_POST['uploadfile'];
             $add_obj=new Addressmodel();
-            $insert=$add_obj->add($name,$address,$city,$age,$country,$state);
+            $insert=$add_obj->add($name,$address,$city,$age,$country,$state,$file);
             if ($insert)
             { 
               $_SESSION['status']="Values Inserted";
@@ -124,8 +131,9 @@ Class Addresscontroller
 	        $age = $_POST['age'];
             $country = $_POST['country'];
             $state = $_POST['state'];
+            $file=$_POST['file'];
             $val=new Addressmodel();
-            $updateval=$val->updaterecord($name,$address,$city,$age,$country,$state,$id,$_POST['updatebutton']);
+            $updateval=$val->updaterecord($name,$address,$city,$age,$country,$state,$id,$file);
             if ($updateval)
             {
                 $_SESSION['status']="Record Updated sucessfully";
