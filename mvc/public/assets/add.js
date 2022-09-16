@@ -5,6 +5,7 @@ const agevalue = document.querySelector('#age');
 const cityvalue = document.querySelector('#city');
 const countryvalue = document.getElementById('country-dropdown');
 const statevalue = document.getElementById('state-dropdown');
+const filevalue= document.getElementById('file');
 
 add.addEventListener('submit',(event)=>{
   validateForm();
@@ -89,7 +90,12 @@ function validateForm(){
   }else{
     setSuccess(statevalue);
   }
-  
+  if(filevalue.length=="0"){
+    alert(filevalue);
+    setError(filevalue,'Please choose a file');
+  }else{
+    setSuccess(filevalue);
+  }
 }
 function setError(element,errorMessage)
 {

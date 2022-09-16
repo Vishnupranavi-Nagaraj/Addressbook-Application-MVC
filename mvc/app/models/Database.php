@@ -93,7 +93,7 @@ class Database extends Db
      */
     public function displaydetails($table){
         try{
-        $display=mysqli_query($this->conn,"SELECT $table.id,$table.name,$table.address,$table.city,country.cname,state.sname  from $table JOIN country ON $table.country_id= country.id join state on $table.state_id = state.id ORDER BY $table.id DESC");
+        $display=mysqli_query($this->conn,"SELECT $table.id,$table.file,$table.name,$table.address,$table.city,country.cname,state.sname  from $table JOIN country ON $table.country_id= country.id join state on $table.state_id = state.id ORDER BY $table.id DESC");
         $displayquery="SELECT address.id,address.name,address.address,address.city,country.cname,state.sname  from address JOIN country ON address.country_id= country.id join state on address.state_id = state.id";
         $this->logger->logquery($displayquery);
         return $display;

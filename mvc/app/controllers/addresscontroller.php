@@ -47,25 +47,37 @@ Class Addresscontroller
      */
     public function update_main($buttonid)
     {
+        
         $this->Addressmodel = $this->model("Addressmodel");
         if (isset($_GET['country_id'])) {
             $state_data=$this->Addressmodel->state_db($_GET['country_id']);
             state_dropdown($state_data);
         } else if(!is_numeric($buttonid)){
             $f_name = $buttonid;
-            
-            header("Content-Disposition:attachment;filename=$f_name");
-
+            $filepath = '/var/www/html/mvc/public/assets/uploads/' . $f_name;
+            if (file_exists($filepath)) {
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/image');
+                header('Content-Disposition: attachment; filename=' . basename($filepath));
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize('/var/www/html/mvc/public/assets/uploads/' . $f_name));
+                ob_clean();
+                flush();
+                readfile('/var/www/html/mvc/public/assets/uploads/' . $f_name);
+            }
         }
         else {
-	        $update_data = $this->Addressmodel->update($buttonid);
+            $update_data = $this->Addressmodel->update($buttonid);
             $selected_cname = $this->Addressmodel->update_country($update_data['country_id']);
             $country_name = $this->Addressmodel->country_db();
             $selected_state = $this->Addressmodel->update_state($update_data['state_id']);
             $state_name = $this->Addressmodel->state_db($update_data['country_id']);
 	        $this->view("edit",[$update_data,$selected_cname,$country_name,$selected_state,$state_name]); 
         }   
-    }
+    
+}
     
     /**
      * add_to-database fetch the id from the view page and sents to the model
@@ -81,20 +93,33 @@ Class Addresscontroller
             $age = $_POST['age'];
             $country = $_POST['country'];
             $state = $_POST['state'];
-            $file=$_POST['uploadfile'];
-            $add_obj=new Addressmodel();
-            $insert=$add_obj->add($name,$address,$city,$age,$country,$state,$file);
-            if ($insert)
-            { 
-              $_SESSION['status']="Values Inserted";
-              redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
-               
-            }else{
-              $_SESSION['status']="Values Not Inserted";
-              redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
-            }
+            $filename=$_FILES['uploadfile']['name'];
+            $destination = '/var/www/html/mvc/public/assets/uploads/'.$filename;
+            $file = $_FILES['uploadfile']['tmp_name'];
+            if ($_FILES['uploadfile']['size'] > 1000000) { 
+                redirect("File too large!");
+            } else {
+                if (move_uploaded_file($file, $destination)) {
+                    $add_obj=new Addressmodel();
+                    $insert=$add_obj->add($name,$address,$city,$age,$country,$state,$filename);
+                    if ($insert)
+                    { 
+                    $_SESSION['status']="Values Inserted";
+                    redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
+                    
+                    }else{
+                    $_SESSION['status']="Values Not Inserted";
+                    redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
+                    }
+                }
+                else{
+                    
+                   redirect("File Upload failed!");
+                }
         }
-    }
+   }
+}
+
     
     /**
      * delete fetch the id from the view page and sents to the model
@@ -131,10 +156,16 @@ Class Addresscontroller
 	        $age = $_POST['age'];
             $country = $_POST['country'];
             $state = $_POST['state'];
-            $file=$_POST['file'];
-            $val=new Addressmodel();
-            $updateval=$val->updaterecord($name,$address,$city,$age,$country,$state,$id,$file);
-            if ($updateval)
+            $filename=$_FILES['uploadfile']['name'];
+            $destination = '/var/www/html/mvc/public/assets/uploads/'.$filename;
+            $file = $_FILES['uploadfile']['tmp_name'];
+            if ($_FILES['uploadfile']['size'] > 1000000) { 
+                redirect("File too large!");
+            } else {
+                if (move_uploaded_file($file, $destination)) {
+                    $val=new Addressmodel();
+                    $updateval=$val->updaterecord($name,$address,$city,$age,$country,$state,$id,$filename);
+                 if ($updateval)
             {
                 $_SESSION['status']="Record Updated sucessfully";
                 redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
@@ -144,6 +175,12 @@ Class Addresscontroller
                 redirect($_SESSION['status'], BASEURL."Addresscontroller/display");
             }
         }
+                else{
+                    
+                   redirect("File Upload failed!");
+                }   
+        }
+    }
     }
      /**
      * This function can be used to check for the Country table

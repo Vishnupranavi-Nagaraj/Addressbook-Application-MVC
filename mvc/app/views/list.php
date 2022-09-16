@@ -24,6 +24,7 @@ else{
 			<img src="http://localhost/mvc/public/assets/user.png" alt="image">
 		</div>
     <div class="email">
+      
 		<?php
 				 echo "Welcome ".substr($_SESSION['email'], 0, strpos($_SESSION['email'], '@'));
 		?> 
@@ -47,6 +48,7 @@ else{
   <thead>
      <tr>
       <th scope="col">S.no</th>
+      
       <th scope="col">Name</th>
       <th scope="col">Address</th>
       <th scope="col">Actions</th>
@@ -78,8 +80,9 @@ else{
           ?>
           <tr>
           <th scope="row"><?php echo $row['id'] ?></th>
-          <td><?php echo $row['name'] ?></td>
-          <td><?php echo $row['address'] ?>,<?php echo $row['city'] ?>,<?php echo $row['cname'] ?>,<?php echo $row['sname']?></td>
+        
+          <td width="1"><?php echo $row['name'] ?></td>
+          <td width><?php echo $row['address'] ?>,<?php echo $row['city'] ?>,<?php echo $row['cname'] ?>,<?php echo $row['sname']?></td>
           <td>
           <button type="submit" name = "selectupdate" class="btn btn-primary" value =<?php echo $row['id'] ?>> <a href="update_main/<?php echo $row['id'] ?>" class="text-light" >Update</a></button>
           <button class="btn btn-danger"><input type="checkbox" id="check" name="stud_delete_id[]" onclick = "enable()" value=<?php echo $row['id'] ?>></button>

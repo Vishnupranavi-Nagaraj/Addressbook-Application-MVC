@@ -7,7 +7,6 @@ if (isset($_SESSION['email']) == null) {
 ?>
     <!Doctype html>
     <html lang="en">
-
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -30,7 +29,7 @@ if (isset($_SESSION['email']) == null) {
             </div>
         </header>
         <div class="container my-5">
-            <form id="add" method="POST" class="form" onsubmit="validateForm()">
+            <form id="add" method="POST" class="form" onsubmit="validateForm()" enctype="multipart/form-data">
                 <div class="form-group">
 
                     <label>Name<sup>*</sup></label>
@@ -113,7 +112,7 @@ if (isset($_SESSION['email']) == null) {
                     <label>Profile Photo<sup>*</sup></label>
                     <br>
                     <!-- <form action="" method="POST" enctype="multipart/form-data" class="form-control" > -->
-                        <input type="file" name="uploadfile" id="file" accept="image/*">
+                        <input type="file" name="uploadfile" id="file" accept="image/*" >
                         
                 </div>
 

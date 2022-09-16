@@ -28,7 +28,7 @@ $validate=new Addresscontroller();
         $update_obj->update($data[0]['id']);    
     ?>
     <div class="container my-5" >
-        <form id="add" method="POST" onsubmit="validateForm()">
+        <form id="add" method="POST" onsubmit="validateForm()" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Name<sup>*</sup></label>
                 <input type="text" class="form-control" placeholder="Enter name" name="name" id="name" value=<?php echo $data[0]['name'];?>  onblur="validateForm()">
@@ -84,9 +84,10 @@ $validate=new Addresscontroller();
                 
                 </div>
                 <div class="form-group">
-                    <label>Profile Photo<sup>*</sup></label>
+                    <label>Profile Photo</label>
                     <br>
-                        <a href="<?php echo ($data[0]['file']); ?>"><?php echo ($data[0]['file']);?></a>
+                        <a href="<?php echo ($data[0]['file']); ?>"><?php echo ($data[0]['file']);?></a>   
+                        <input type="file" name="uploadfile" id="file"  accept="image/*" value=<?php echo ($data[0]['file']);?>>
                         <p></p>
                 </div>
               
